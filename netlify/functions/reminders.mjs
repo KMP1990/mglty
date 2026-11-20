@@ -7,13 +7,25 @@ import { bootstrap } from './_bootstrap.mjs';
 
 export const config = { schedule: '* * * * *' };
 
+function json(status, payload) {
+  return new Response(JSON.stringify(payload), {
+    status,
+    headers: { 'content-type': 'application/json; charset=utf-8', 'cache-control': 'no-store' },
+  });
+}
+
 export default async function runReminders(event = {}) {
-  if (event.blobs) connectLambda(event);
+  // سياق Blobs يُمرَّر كنص في وضع Lambda فقط.
+  if (typeof event?.blobs === 'string') {
+    try {
+      connectLambda(event);
+    } catch {
+      // Blobs مهيّأة عبر متغيّرات البيئة الحديثة.
+    }
+  }
   const { ctx } = await bootstrap();
   const scheduler = ctx?.services?.reminders;
-  if (!scheduler?.tickOnce) {
-    return { statusCode: 503, body: JSON.stringify({ ok: false, error: 'reminders_unavailable' }) };
-  }
+  if (!scheduler?.tickOnce) return json(503, { ok: false, error: 'reminders_unavailable' });
   await scheduler.tickOnce();
-  return { statusCode: 200, body: JSON.stringify({ ok: true, at: new Date().toISOString() }) };
+  return json(200, { ok: true, at: new Date().toISOString() });
 }
