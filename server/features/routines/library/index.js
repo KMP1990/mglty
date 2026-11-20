@@ -9,7 +9,9 @@ import { fileURLToPath } from 'node:url';
 import { COLORS, ENERGY_LEVELS, ICONS, PRIORITIES, sanitizeDays, sanitizeSteps } from '../validate.js';
 import { normalizeTitle } from '../systems/engine.js';
 
-const HERE = path.dirname(fileURLToPath(import.meta.url));
+const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
+const PROJECT_DIR = path.join(process.cwd(), 'server', 'features', 'routines', 'library');
+const HERE = fs.existsSync(PROJECT_DIR) ? PROJECT_DIR : MODULE_DIR;
 
 function readJson(file) {
   try {

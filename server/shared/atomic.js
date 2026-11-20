@@ -13,13 +13,14 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import { blobEnabled, blobWrite } from './blob-vfs.js';
 
 const queues = new Map();
 export const backupName = (fileName) => `bak.${fileName}`;
 
 export function atomicWriteFile(filePath, contents) {
   const prev = queues.get(filePath) || Promise.resolve();
-  const next = prev.catch(() => { }).then(() => doAtomicWrite(filePath, contents));
+  const next = prev.catch(() => { }).then(() => (blobEnabled() ? blobWrite(filePath, contents) : doAtomicWrite(filePath, contents)));
   queues.set(filePath, next);
   next
     .finally(() => {

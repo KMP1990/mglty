@@ -8,7 +8,7 @@
  *  - الأصول الثابتة: stale-while-revalidate (سرعة + تحديث خلفي)
  *  - الـ API: شبكة فقط — لا نكاش لأي بيانات مستخدم أبدًا
  */
-const VERSION = 'mwowvtbc-0.1.0';
+const VERSION = 'mwoydmdh-0.1.0';
 const SHELL_CACHE = `mr-shell-${VERSION}`;
 const ASSET_CACHE = `mr-assets-${VERSION}`;
 const ORIGIN = self.location.origin;

@@ -19,6 +19,13 @@ const RETRY_STEPS = [2000, 5000, 10000, 20000, 40000];
 export function startLive() {
   if (stopRequested) stopRequested = false; // إعادة السماح بعد خروج/دخول جديد
   if (source || !appStore.state.authenticated) return source || null;
+  // Netlify Functions لا تُبقي SSE مفتوحًا؛ نستخدم تحديثًا دوريًا أخف.
+  if (globalThis.__MR_SERVERLESS__) {
+    void visitApp();
+    startPolling();
+    setConnectionState('polling');
+    return null;
+  }
   if (typeof EventSource === 'undefined') return null;
   // نبض وصول: يخبر الخادم أن التطبيق فُتح (ويُعيد ما فات أثناء الغياب)
   void visitApp();
@@ -148,7 +155,8 @@ export async function visitApp() {
 function setConnectionState(state) {
   document.querySelectorAll('[data-live-state]').forEach((el) => {
     el.dataset.state = state;
-    el.textContent = state === 'live' ? 'متصل مباشرة' : state === 'connecting' ? 'جارٍ إعادة الاتصال' : 'غير متصل';
+    el.textContent =
+      state === 'live' ? 'متصل مباشرة' : state === 'polling' ? 'تحديث دوري' : state === 'connecting' ? 'جارٍ إعادة الاتصال' : 'غير متصل';
   });
   document.dispatchEvent(new CustomEvent('mr:live-state', { detail: { state } }));
 }

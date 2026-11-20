@@ -12,7 +12,9 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 import { COLORS, ICONS, sanitizeDays } from '../validate.js';
 import { buildMetrics, clamp, ENERGY_LEVELS, normalizeTitle, PRIORITIES } from './engine.js';
 
-const HERE = path.dirname(fileURLToPath(import.meta.url));
+const MODULE_DIR = path.dirname(fileURLToPath(import.meta.url));
+const PROJECT_DIR = path.join(process.cwd(), 'server', 'features', 'routines', 'systems');
+const HERE = fs.existsSync(PROJECT_DIR) ? PROJECT_DIR : MODULE_DIR;
 export const SYSTEM_IDS = Object.freeze(['deep-focus', 'energy', 'calm', 'builder', 'balance']);
 const INTENSITIES = ['full', 'core', 'light'];
 

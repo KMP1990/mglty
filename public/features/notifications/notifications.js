@@ -108,7 +108,7 @@ function viewHtml() {
           <span class="status-dot" data-live-dot data-state="connecting"></span>
           <strong data-live-state style="font-size:.9rem">جارٍ الاتصال…</strong>
         </div>
-        <p style="margin:0;font-size:.82rem;color:var(--text-muted)">يصل الإشعار فورًا دون تحديث الصفحة، ويعود تلقائيًا عند انقطاع الشبكة.</p>
+        <p style="margin:0;font-size:.82rem;color:var(--text-muted)">${globalThis.__MR_SERVERLESS__ ? 'تحديث تلقائي كل ٢٠ ثانية على النشر السحابي، والإشعارات الخارجية تصل عبر Push.' : 'يصل الإشعار فورًا دون تحديث الصفحة، ويعود تلقائيًا عند انقطاع الشبكة.'}</p>
       </div>
 
       <div class="card side-card" data-mobile="true">

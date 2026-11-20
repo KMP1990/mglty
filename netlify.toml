@@ -1,10 +1,9 @@
-# إعداد Netlify — واجهة + CDN فقط
+# إعداد Netlify — التطبيق الكامل مجانًا
 # ------------------------------------------------------------
-# هذا التطبيق Express كامل (تسجيل دخول، جلسات، إشعارات، بيانات على القرص).
-# Netlify لا يشغّل خادم Node دائمًا، لذلك النشر هنا جهة واجهة/أصول فقط:
-#   1) `npm run build` يجهّز `public` ثم ينسخها إلى `dist` للنشر.
-#   2) طلبات الصفحات و/api تُمرَّر إلى خادم Node عبر Edge Function.
-#   3) يجب نشر الخادم على Render/Railway/Fly وضبط BACKEND_ORIGIN في Netlify.
+# الصفحات و/api تعمل داخل Netlify Function (`server`) مع Express،
+# والبيانات الدائمة في Netlify Blobs بدل القرص (لا Render ولا بطاقة).
+# الأصول الثابتة تبقى على CDN. المجدول الدوري يعمل عبر Scheduled Function.
+# اختياري: BACKEND_ORIGIN يوجّه الطلبات إلى Render/Railway بدل الدالة.
 # التفاصيل في DEPLOY.md.
 
 [build]
@@ -13,6 +12,14 @@
 
 [build.environment]
   NODE_VERSION = "22"
+
+[functions]
+  directory = "netlify/functions"
+  included_files = [
+    "public/build.json",
+    "server/features/routines/systems/**",
+    "server/features/routines/library/**",
+  ]
 
 [[edge_functions]]
   function = "proxy"

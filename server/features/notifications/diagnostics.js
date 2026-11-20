@@ -3,7 +3,7 @@
  * مع حالة الجهاز التي يبلّغ عنها المتصفح، ويحوّلها إلى قائمة فحوص قابلة للتنفيذ.
  * لا يكشف أي مفتاح سري أو endpoint كامل — فقط حقائق الحالة.
  */
-import fs from 'node:fs';
+import { readJsonSafe } from '../../shared/store.js';
 
 export const NOTIFICATION_EVENTS = {
   'routine-time': 'تذكير روتين في وقته',
@@ -64,7 +64,7 @@ export function createNotificationDiagnostics({ config, push, service, store, pr
     const pres = presence ? await presence.read(user.id).catch(() => null) : null;
     const clientState = normalizeClient(client);
     const vapidFile = `${config.dataDir}/push-vapid.json`;
-    const vapidFileExists = fs.existsSync(vapidFile);
+    const vapidFileExists = Boolean(await readJsonSafe(vapidFile, null));
     const lastNotification = box.items?.[0] || null;
     const lastError = devices.find((device) => device.lastError) || null;
     const secure = clientState.secure || config.env !== 'production';

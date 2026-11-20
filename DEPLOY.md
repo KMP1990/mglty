@@ -1,143 +1,157 @@
-# النشر — Netlify + Render (أو Render فقط)
+# النشر المجاني — Netlify Functions + Blobs
 
-## لماذا فشل نشر Netlify؟
+هذا التطبيق Express كامل، لكنه الآن يعمل **مجانًا بالكامل على Netlify**:
 
-التطبيق ليس موقعًا ثابتًا: خادم **Express** يبني الصفحات، ويسجّل الجلسات،
-ويحفظ الحسابات والإشعارات وبيانات `data/` على القرص. Netlify يشغّل ملفات
-ثابتة وFunctions قصيرة العمر فقط، ولا يشغّل خادم Node دائمًا.
+| الطبقة | ماذا تفعل |
+|---|---|
+| Netlify CDN | يخدم `dist/` (CSS/JS/الخطوط/vendor) |
+| Edge Function `proxy` | تمرّر الصفحات و`/api` إلى دالة `server` |
+| Netlify Function `server` | تشغّل Express نفسه: الجلسات، الحسابات، الروتينات، الإشعارات |
+| Netlify Blobs | تخزين دائم لـ`data/`: المستخدمون، الجلسات، الإشعارات، الروتينات |
+| Scheduled Function `reminders` | تشغّل مجدول التذكيرات كل دقيقة بلا خادم دائم |
 
-خطأ `Deploy directory 'dist' does not exist` سببه أن:
-
-- `npm run build` كان يكتب مخرجات البناء في **`public/`** فقط،
-  وإعداد Netlify ينتظر `dist/`.
-- أصلحنا `tools/build.mjs` لينسخ `public/` إلى **`dist/`** في نهاية البناء.
-- في `netlify.toml` صار النشر من `dist`:
-
-```toml
-[build]
-  command = "npm run build"
-  publish = "dist"
-```
-
-لكن `dist` وحده يعرض الأصول فقط، لأن صفحات التطبيق تُبنى في الخادم.
-لذلك أضفنا Edge Function تمرّر الصفحات و`/api` إلى خادم Node.
+لا تحتاج Render، ولا قرصًا دائمًا، ولا `BACKEND_ORIGIN`، ولا بطاقة بنكية.
+`BACKEND_ORIGIN` بقي **اختياريًا** لمن يريد لاحقًا خادم Node دائمًا مع SSE مباشر.
 
 ---
 
-## الطريقة الموصى بها: Render للخادم + Netlify للواجهة
+## 1) ارفع المشروع إلى GitHub
 
-### 1) انشر الخادم على Render
+المستودع الحالي:
 
-المشروع يحتوي `Dockerfile` و`render.yaml`.
+```text
+https://github.com/KMP1990/mglty
+```
 
-1. ارفع المشروع إلى GitHub.
-2. من Render: **New → Blueprint** واختر المستودع.
-3. Render يقرأ `render.yaml` وينشئ خدمة Docker وقرصًا دائمًا على `/app/data`.
-4. انتظر حتى يصبح الرابط يعمل، وتأكد من:
+تأكد أن آخر commit يحتوي:
 
-   ```
-   https://YOUR-SERVICE.onrender.com/api/healthz
-   ```
+- `netlify.toml`
+- `netlify/edge-functions/proxy.js`
+- `netlify/functions/server.mjs`
+- `netlify/functions/reminders.mjs`
+- `server/shared/blob-vfs.js`
 
-   يجب أن يرجع `{"ok":true,...}`.
+---
 
-> `render.yaml` يستخدم خطة `starter` لأن القرص الدائم غير متاح في الخطة
-> المجانية. بدون قرص ستفقد الحسابات عند كل إعادة نشر.
-
-### 2) اربط Netlify بالخادم
+## 2) اربط Netlify بالمستودع
 
 في Netlify:
 
-**Site settings → Environment variables → Add a variable**
+1. **Add new site → Import an existing project → GitHub**
+2. اختر `KMP1990/mglty`.
+3. اترك الإعدادات كما في `netlify.toml`:
+   - Build command: `npm run build`
+   - Publish directory: `dist`
+   - Node: `22`
+4. اضغط **Deploy**.
 
+Netlify يثبّت التبعيات تلقائيًا، ويبني `dist/`، وينشر:
+- Edge Function واحدة،
+- دالة `server`،
+- دالة `reminders` المجدولة.
+
+---
+
+## 3) متغيّر واحد اختياري (مستحسن)
+
+سر الجلسات يُنشأ تلقائيًا ويُحفظ في Netlify Blobs، لذلك الموقع يعمل بدون أي
+متغيرات. لكن يمكنك تثبيته من:
+
+**Site configuration → Environment variables**
+
+```text
+SESSION_SECRET = أي-نص-عشوائي-طويل
 ```
-BACKEND_ORIGIN = https://YOUR-SERVICE.onrender.com
-```
 
-ثم:
+هذا يضمن بقاء الجلسات ثابتة حتى لو حُذف مخزن Blobs أو أُعيد إنشاؤه.
+لا تضف `PORT` ولا `DATA_DIR`؛ الدالة تضبطهما.
 
-**Deploys → Trigger deploy → Deploy site**
-
-بعد إعادة النشر:
-
-- `/` و`/books` و`/login` تُمرَّر إلى Render.
-- `/assets` و`/vendor` و`/styles` و`/sw.js` تُخدَم من Netlify CDN.
-- مخرجات البناء موجودة في `dist/`، فلا يظهر خطأ `dist does not exist`.
-- `/api/*` تُمرَّر إلى Render.
-- إذا نسيت `BACKEND_ORIGIN` ستظهر صفحة عربية توضّح الخطوة، وليس 404.
-
-### 3) إعدادات مهمة على Render
-
-`render.yaml` يضبط تلقائيًا:
-
-| المتغير | القيمة |
-|---|---|
-| `NODE_ENV` | `production` |
-| `SESSION_SECRET` | يُولَّد تلقائيًا |
-| `DATA_DIR` | `/app/data` |
-| `TRUST_PROXY` | `1` |
-| `COOKIE_SECURE` | `true` |
-
-لا تضع `PORT`؛ Render يضبطه تلقائيًا.
+`BACKEND_ORIGIN` **غير مطلوب** في هذا الوضع. لا تضفه إلا إذا قررت تشغيل
+خادم Render/Railway منفصل.
 
 ---
 
-## الطريقة الأبسط: Render فقط بدون Netlify
-
-إذا لا تحتاج CDN منفصلًا:
-
-1. انشر Blueprint نفسه على Render.
-2. افتح رابط `onrender.com` مباشرة.
-3. لا تحتاج `BACKEND_ORIGIN` ولا Netlify.
-
-هذه الطريقة أقل تعقيدًا، وكل الطلبات على نفس الخادم.
-
----
-
-## بدائل أخرى
-
-المشروع يعمل على أي منصة تشغّل Docker مع قرص دائم:
-
-- **Railway:** Deploy from repo → Dockerfile، وأضف Volume على `/app/data`.
-- **Fly.io:** `fly launch` ثم volume على `/app/data`.
-- **VPS:** `docker compose up -d` مع volume.
-
-المتطلبات الأساسية:
-
-- `SESSION_SECRET` عشوائي طويل.
-- `DATA_DIR` على قرص دائم.
-- HTTPS (للـPush وCookies الآمنة).
-- `TRUST_PROXY=1` خلف Proxy.
-
----
-
-## ماذا عن Netlify فقط؟
-
-غير ممكن لهذا الإصدار. Netlify لا يشغّل Express ولا يحفظ `data/`.
-تحويل التطبيق إلى Netlify Functions يحتاج قاعدة بيانات خارجية
-وإعادة كتابة طبقة التخزين والجلسات والمجدول، وهو تغيير معماري كبير
-وليس مجرد تعديل مجلد نشر.
-
----
-
-## التحقق بعد النشر
+## 4) تحقق بعد النشر
 
 ```bash
-curl https://YOUR-SERVICE.onrender.com/api/healthz
-curl -I https://YOUR-SITE.netlify.app/
-curl -I https://YOUR-SITE.netlify.app/books
+curl https://mgla.netlify.app/api/healthz
+# {"ok":true,...}
+
+curl -I https://mgla.netlify.app/
+# 200 text/html
+
+curl https://mgla.netlify.app/api/routines/mega
+# 401 بلا جلسة — طبيعي
 ```
 
-- يجب أن تكون الصفحات `200` و`content-type: text/html`.
-- `/api/healthz` عبر Netlify يجب أن يرجع JSON.
-- إذا ظهرت صفحة «الخادم غير مرتبط» راجع `BACKEND_ORIGIN`.
-- إذا ظهر 502 راجع أن خدمة Render تعمل وأن الرابط صحيح.
+ثم من المتصفح:
+
+1. افتح `/signup` وأنشئ حسابًا.
+2. أنشئ روتينًا وأنجزه.
+3. أعد تحميل الصفحة — يجب أن يبقى الحساب والروتين.
+4. افتح `/routines` واضغط **مركز القيادة** — يجب أن تظهر ١٢٠ قدرة.
 
 ---
 
-## ملاحظات
+## كيف تعمل البيانات بلا قرص؟
 
-- ملفات PDF والكتب تبقى على جهاز المستخدم؛ الخادم لا يستقبلها.
-- OCR العربي (`public/vendor/tesseract`) يُخدَم من Netlify CDN.
-- Service Worker وPush يحتاجان HTTPS، وهو متوفر في Netlify وRender.
-- المجدول الدوري (تذكيرات) يعمل على خادم Render الدائم، وليس داخل Edge Function.
+`server/shared/blob-vfs.js` يركّب طبقة توافق فوق `fs/promises`:
+
+- كل مسار داخل `DATA_DIR` يُحوَّل إلى مفتاح في Netlify Blobs.
+- `readJsonSafe` و`writeJsonSafe` والجلسات والحضور والمجدول تعمل كما هي.
+- الكتابة الذرّية تصبح `store.set` واحدة (Blob واحد = عملية ذرّية).
+- `ensureBlobSecret()` ينشئ سر الجلسات مرة واحدة ويحفظه في `_meta/session-secret`.
+- مفاتيح VAPID تُحفظ في Blobs، لذلك Web Push يبقى صالحًا بعد إعادة التشغيل.
+
+### ملاحظات دقيقة
+
+- **SSE** لا يبقى مفتوحًا داخل دوال Netlify، لذلك الواجهة تتحول تلقائيًا إلى
+  تحديث كل ٢٠ ثانية. إشعارات Web Push الخارجية تعمل طبيعيًا.
+- **المجدول** يعمل عبر Scheduled Function كل دقيقة، وليس `setInterval` داخل دالة عابرة.
+- **الحدود المجانية**: ١٢٥ ألف استدعاء دالة شهريًا. المجدول يستهلك نحو ٤٣ ألفًا،
+  وباقي الاستدعاءات للتطبيق. إذا تجاوزتها، قلّل جدول `reminders.mjs` إلى `*/5 * * * *`.
+- **Blobs** مجاني ضمن حدود Netlify، ويحفظ الجلسات والبيانات بين الطلبات.
+
+---
+
+## استكشاف الأخطاء
+
+### الصفحة تظهر «الخادم غير مرتبط»
+
+- تأكد أن النشر جاء من Git وليس سحب مجلد `dist` يدويًا.
+- افتح **Deploys → Deploy log** وابحث عن `server` و`reminders`.
+- أعد النشر: **Deploys → Trigger deploy → Clear cache and deploy site**.
+
+### `/api/healthz` يرجع 500
+
+افتح **Functions → server → Logs**. الأسباب الشائعة:
+
+- حزمة `@netlify/blobs` غير مثبتة: نفّذ `npm install` ثم ارفع `package-lock.json`.
+- ملفات الأنظمة غير موجودة في الحزمة: تحقق من `included_files` في `netlify.toml`.
+- تعذّر الوصول إلى Blobs: تأكد أن الموقع منشور من Git على Netlify وليس محليًا.
+
+### الدخول ينجح ثم تنتهي الجلسة بسرعة
+
+اضبط `SESSION_SECRET` في Netlify وأعد النشر. هذا يثبّت التوقيع بين كل الدوال.
+
+### المجدول لا يرسل
+
+- تأكد أن `reminders.mjs` ظهر في **Functions**.
+- جدولته `* * * * *` (كل دقيقة).
+- Web Push يحتاج HTTPS واشتراكًا من صفحة الإشعارات.
+
+---
+
+## الخيار الاختياري: خادم دائم (Render/Railway)
+
+إذا أردت لاحقًا SSE مباشرًا ومجدولًا داخل عملية Node دائمة:
+
+1. انشر `Dockerfile` على Render/Railway.
+2. أضف قرصًا دائمًا على `/app/data` (مدفوع في Render).
+3. في Netlify أضف:
+   ```text
+   BACKEND_ORIGIN = https://YOUR-SERVICE.onrender.com
+   ```
+4. أعد نشر Netlify. سيتحوّل Edge Function إلى ذلك الخادم بدل دالة `server`.
+
+هذا **ليس مطلوبًا** للنسخة المجانية.

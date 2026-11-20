@@ -106,7 +106,7 @@ export async function createApp(config) {
   // الصفحات كلها من قالب الخادم — لا index.html يعتمد عليه، ولا تعارض مع express.static
   const buildMarker = `<script>window.__MR_VERSION__=${JSON.stringify(BUILD.id)};window.__MR_BUILD__=${JSON.stringify(
     BUILD.builtAt
-  )};</script>`;
+  )};window.__MR_SERVERLESS__=${process.env.MR_SERVERLESS === '1' ? 'true' : 'false'};</script>`;
 
   const ROUTE_NAMES = {
     '/': 'home',
