@@ -1,0 +1,138 @@
+/* ==========================================================
+   مجلتي وروتيني — رموز التصميم (Design Tokens)
+   كل الألوان والمسافات والظلال والخطوط تُعرَّف هنا مرة واحدة.
+   ========================================================== */
+
+:root {
+  color-scheme: light;
+
+  /* ألوان العلامة: توتي دافئ + فستقي + عسلي */
+  --brand-50: #fdf2f8;
+  --brand-100: #fce7f3;
+  --brand-200: #fbcfe8;
+  --brand-300: #f9a8d4;
+  --brand-400: #f472b6;
+  --brand-500: #db2777;
+  --brand-600: #be185d;
+  --brand-700: #9d174d;
+
+  --mint-100: #ccfbf1;
+  --mint-400: #2dd4bf;
+  --mint-500: #14b8a6;
+  --mint-600: #0d9488;
+
+  --honey-100: #fef3c7;
+  --honey-400: #fbbf24;
+  --honey-500: #f59e0b;
+
+  /* أسطح */
+  --bg: #fdfbfb;
+  --bg-elevated: #ffffff;
+  --bg-soft: #f7f4f6;
+  --bg-tint: radial-gradient(1100px 700px at 94% -12%, #ffe4f0 0%, transparent 62%),
+    radial-gradient(900px 620px at -8% 24%, #d8f8f1 0%, transparent 56%),
+    radial-gradient(700px 500px at 52% 108%, #fff4d8 0%, transparent 58%),
+    linear-gradient(160deg, #fffafc 0%, #f7fbfa 48%, #fffaf1 100%);
+  --surface-border: #efdde6;
+  --surface-border-strong: #e3c5d4;
+
+  /* نص */
+  --text: #2a1b24;
+  --text-soft: #6b5560;
+  --text-muted: #94808b;
+  --text-on-brand: #ffffff;
+
+  /* حالات */
+  --danger: #dc2626;
+  --danger-soft: #fee2e2;
+  --success: #0f9d76;
+  --success-soft: #d1fae5;
+  --warning: #b45309;
+  --warning-soft: #fef3c7;
+  --info: #2563eb;
+  --info-soft: #dbeafe;
+
+  /* ظلال */
+  --shadow-sm: 0 1px 2px rgba(70, 20, 45, 0.06);
+  --shadow-md: 0 8px 24px -12px rgba(70, 20, 45, 0.25);
+  --shadow-lg: 0 24px 60px -24px rgba(70, 20, 45, 0.35);
+  --ring: 0 0 0 3px rgba(219, 39, 119, 0.22);
+
+  /* قياسات */
+  --radius-sm: 10px;
+  --radius: 16px;
+  --radius-lg: 24px;
+  --radius-full: 999px;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --container: 1120px;
+  --header-h: 68px;
+
+  /* ---------- الخطوط ----------
+     ثلاث عائلات عربية محلية متغيرة (Variable) + احتياط نظام قوي.
+     لا تستخدم -apple-system قبل العربية: بعض الأنظمة تختار خطًا بلا تشكيل عربي. */
+  --font-ui: 'Noto Sans Arabic', 'Mujalati', 'Tajawal', 'Segoe UI', Tahoma, 'Geeza Pro', system-ui, sans-serif;
+  --font-body: 'Noto Sans Arabic', 'Mujalati', 'Tajawal', 'Segoe UI', Tahoma, 'Geeza Pro', system-ui, sans-serif;
+  --font-display: 'Cairo', 'Noto Sans Arabic', 'Mujalati', 'Tajawal', 'Segoe UI', Tahoma, system-ui, sans-serif;
+  --font-reading: 'Noto Naskh Arabic', 'Mujalati', 'Tajawal', 'Traditional Arabic', 'Geeza Pro', serif;
+  --font-sans: 'Noto Sans Arabic', 'Mujalati', 'Tajawal', 'Segoe UI', Tahoma, system-ui, sans-serif;
+  --font-serif: 'Noto Naskh Arabic', 'Mujalati', 'Tajawal', 'Traditional Arabic', 'Geeza Pro', serif;
+  --font-mono: ui-monospace, 'Cascadia Mono', 'Segoe UI Mono', 'SFMono-Regular', Menlo, Consolas, monospace;
+  /* اسم قديم مستخدم في مكوّنات كثيرة — يبقى مرادفًا للواجهة */
+  --font-ar: var(--font-body);
+
+  /* إيقاع عمودي يمنع التداخل بين الأسطر والحركات العربية */
+  --leading-none: 1;
+  --leading-tight: 1.24;
+  --leading-snug: 1.42;
+  --leading-body: 1.75;
+  --leading-readable: 1.9;
+  --tracking-tight: -0.004em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.04em;
+
+  /* مقياس طباعي سائل */
+  --text-2xs: 0.68rem;
+  --text-xs: 0.75rem;
+  --text-sm: 0.84rem;
+  --text-base: 1rem;
+  --text-md: 1.08rem;
+  --text-lg: clamp(1.12rem, 1.04rem + 0.35vw, 1.28rem);
+  --text-xl: clamp(1.32rem, 1.16rem + 0.7vw, 1.58rem);
+  --text-2xl: clamp(1.58rem, 1.32rem + 1.1vw, 2.05rem);
+  --text-3xl: clamp(1.95rem, 1.5rem + 1.9vw, 2.85rem);
+  --text-4xl: clamp(2.35rem, 1.65rem + 3vw, 3.65rem);
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur: 220ms;
+}
+
+[data-theme='dark'] {
+  color-scheme: dark;
+  --bg: #15101a;
+  --bg-elevated: #1e1724;
+  --bg-soft: #241c2b;
+  --bg-tint: radial-gradient(1200px 600px at 100% -10%, #3a1c2e 0%, transparent 60%),
+    radial-gradient(900px 500px at -10% 110%, #12312e 0%, transparent 55%), #15101a;
+  --surface-border: #33283c;
+  --surface-border-strong: #443349;
+  --text: #f7eef4;
+  --text-soft: #c4b3bf;
+  --text-muted: #95829b;
+  --danger: #f87171;
+  --danger-soft: #3f1d25;
+  --success: #34d399;
+  --success-soft: #0f3329;
+  --warning: #fbbf24;
+  --warning-soft: #3b2a10;
+  --info: #93c5fd;
+  --info-soft: #172a45;
+  --shadow-md: 0 10px 30px -12px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 30px 70px -30px rgba(0, 0, 0, 0.75);
+  --ring: 0 0 0 3px rgba(244, 114, 182, 0.3);
+}

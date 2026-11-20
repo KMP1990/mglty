@@ -1,0 +1,39 @@
+# نشر الخادم الكامل على Render (Docker)
+# ------------------------------------------------------------
+# Netlify يخدم الواجهة فقط لأن التطبيق Express ويحتاج قرصًا للبيانات.
+# هذا الملف ينشر الخادم مع قرص دائم لحفظ الحسابات والجلسات والإشعارات.
+#
+# خطوات سريعة:
+#   1) ارفع المشروع إلى GitHub.
+#   2) Render → New → Blueprint → اختر المستودع.
+#   3) Render يقرأ هذا الملف وينشئ الخدمة والقرص.
+#   4) انسخ رابط الخدمة (https://...onrender.com) وضعه في Netlify
+#      كمتغيّر BACKEND_ORIGIN.
+#
+# ملاحظة: القرص الدائم متاح في خطة starter وما فوقها. إذا استخدمت free
+# بدون قرص، ستفقد الحسابات والبيانات عند كل إعادة نشر.
+
+services:
+  - type: web
+    name: majalati-routinee
+    runtime: docker
+    plan: starter
+    region: frankfurt
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/healthz
+    autoDeploy: true
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: DATA_DIR
+        value: /app/data
+      - key: TRUST_PROXY
+        value: "1"
+      - key: COOKIE_SECURE
+        value: "true"
+    disk:
+      name: majalati-data
+      mountPath: /app/data
+      sizeGB: 1

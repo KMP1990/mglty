@@ -1,0 +1,13 @@
+{
+  "version": 1,
+  "name": "مكتبة الروتينات الجاهزة",
+  "categories": [
+    { "id": "body", "name": "الجسد", "emoji": "🌿", "color": "mint", "description": "حركة وماء ونوم وطاقة" },
+    { "id": "mind", "name": "الذهن", "emoji": "🧠", "color": "lilac", "description": "هدوء وتدوين وقراءة وتنفس" },
+    { "id": "work", "name": "العمل والتعلّم", "emoji": "🎯", "color": "honey", "description": "تخطيط وتركيز ومهارة" },
+    { "id": "home", "name": "البيت", "emoji": "🏠", "color": "sand", "description": "ترتيب وطهي وعناية" },
+    { "id": "people", "name": "العلاقات", "emoji": "💗", "color": "rose", "description": "تواصل إنساني صغير" },
+    { "id": "money", "name": "المال", "emoji": "🪙", "color": "honey", "description": "وعي مالي بلا تعقيد" },
+    { "id": "spirit", "name": "الروح", "emoji": "✨", "color": "sky", "description": "ذكر وامتنان وسكينة" }
+  ]
+}

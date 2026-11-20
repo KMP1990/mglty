@@ -1,0 +1,35 @@
+/* نسخة مختصرة من أنماط المصادقة — تُحمَّل داخل صفحة معقدة (مثل الحساب) */
+.pw-rules {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.pw-rules li {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.pw-rules li::before {
+  content: '○';
+  font-size: 0.7rem;
+}
+
+.pw-rules li[data-ok='true'] {
+  color: var(--success);
+}
+
+.pw-rules li[data-ok='true']::before {
+  content: '●';
+}
+
+.field .hint {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}

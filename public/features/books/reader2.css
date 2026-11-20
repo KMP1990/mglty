@@ -1,0 +1,2629 @@
+/* ==========================================================
+   أغلفة الكتب + قارئ التدفّق الجديد
+   ========================================================== */
+
+/* ---------- غلاف المكتبة ---------- */
+.book-cover-wrap {
+  position: relative;
+}
+
+.book-cover.has-art {
+  padding: 0;
+  background: #16120e;
+}
+
+.book-cover-img {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cover-shade {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.34), transparent 30%, transparent 68%, rgba(0, 0, 0, 0.52)),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.22) 0 4px, transparent 4px);
+}
+
+.book-cover.has-art .cover-top {
+  position: relative;
+  z-index: 3;
+  padding: 12px;
+}
+
+.cover-fallback {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 6px;
+  padding: 16px;
+  background:
+    radial-gradient(120% 90% at 100% 0%, rgba(255, 255, 255, 0.25), transparent 55%),
+    linear-gradient(145deg, hsl(var(--cover-hue) 42% 40%), hsl(calc(var(--cover-hue) + 45) 50% 20%));
+}
+
+.cover-fallback b {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.cover-fallback small {
+  opacity: 0.8;
+  font-size: 0.7rem;
+}
+
+.cover-done {
+  position: absolute;
+  z-index: 3;
+  inset-inline-start: 10px;
+  bottom: 9px;
+  padding: 3px 8px;
+  border-radius: 99px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #2b241c;
+  font-size: 0.62rem;
+  font-weight: 900;
+}
+
+.book-cover-edit {
+  position: absolute;
+  z-index: 4;
+  inset-inline-end: 8px;
+  bottom: 8px;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 10px;
+  background: rgba(20, 15, 10, 0.5);
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.82rem;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.2s var(--ease), transform 0.2s var(--ease), background 0.2s var(--ease);
+}
+
+.book-cover-wrap:hover .book-cover-edit,
+.book-cover-edit:focus-visible {
+  opacity: 1;
+  transform: none;
+}
+
+.book-cover-edit:hover {
+  background: rgba(20, 15, 10, 0.78);
+}
+
+.continue-cover.has-art {
+  padding: 0;
+  background: #16120e;
+  overflow: hidden;
+}
+
+.continue-cover img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.continue-format {
+  position: relative;
+  z-index: 2;
+  align-self: end;
+  justify-self: center;
+  margin-bottom: 5px;
+  padding: 2px 5px;
+  border-radius: 99px;
+  background: rgba(0, 0, 0, 0.55);
+  font-size: 0.55rem;
+}
+
+@media (max-width: 720px) {
+  .book-cover-edit {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ---------- القارئ الجديد ---------- */
+.reader2 {
+  --r2-size: 19px;
+  --r2-line: 1.95;
+  --r2-font: var(--font-reading);
+  --r2-width: 730px;
+  --r2-bg: #e4dccd;
+  --r2-page: #fdfaf3;
+  --r2-ink: #2a241d;
+  --r2-muted: #7d7164;
+  --r2-line-c: #ebe2d3;
+  --r2-accent: #a2632a;
+  --r2-accent-soft: rgba(162, 99, 42, 0.11);
+  --r2-glass: color-mix(in srgb, var(--r2-page) 78%, transparent);
+  --reader-bg: var(--r2-bg);
+  --reader-page: var(--r2-page);
+  --reader-ink: var(--r2-ink);
+  --reader-muted: var(--r2-muted);
+  --reader-line: var(--r2-line-c);
+  --reader-accent: var(--r2-accent);
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background:
+    radial-gradient(1100px 480px at 50% -12%, color-mix(in srgb, var(--r2-page) 44%, transparent), transparent 68%),
+    var(--r2-bg);
+  color: var(--r2-ink);
+  font-family: var(--font-ui);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.reader2[data-theme='sepia'] {
+  --r2-bg: #e5d2b0;
+  --r2-page: #f8ecd7;
+  --r2-ink: #3a2a18;
+  --r2-muted: #856a4a;
+  --r2-line-c: #e6d2b1;
+  --r2-accent: #925c1f;
+}
+
+.reader2[data-theme='night'] {
+  --r2-bg: #0b0a0f;
+  --r2-page: #17161d;
+  --r2-ink: #ebe5da;
+  --r2-muted: #a29a8f;
+  --r2-line-c: #2c2a35;
+  --r2-accent: #e0a45c;
+  --r2-accent-soft: rgba(224, 164, 92, 0.14);
+}
+
+.reader2[data-theme='ocean'] {
+  --r2-bg: #06141d;
+  --r2-page: #0d2230;
+  --r2-ink: #dcecf4;
+  --r2-muted: #8ba8b8;
+  --r2-line-c: #1b3545;
+  --r2-accent: #67c7d8;
+  --r2-accent-soft: rgba(103, 199, 216, 0.13);
+}
+
+.reader2[data-theme='forest'] {
+  --r2-bg: #07120e;
+  --r2-page: #10221b;
+  --r2-ink: #dfeade;
+  --r2-muted: #93a994;
+  --r2-line-c: #1f352b;
+  --r2-accent: #8ccf9a;
+  --r2-accent-soft: rgba(140, 207, 154, 0.13);
+}
+
+.reader2[data-theme='rose'] {
+  --r2-bg: #f0dae1;
+  --r2-page: #fdf4f7;
+  --r2-ink: #3a2530;
+  --r2-muted: #8d707d;
+  --r2-line-c: #efdae3;
+  --r2-accent: #b33a6e;
+}
+
+.reader2 *,
+.reader2 *::before,
+.reader2 *::after {
+  box-sizing: border-box;
+}
+
+.reader2 ::selection {
+  background: color-mix(in srgb, var(--r2-accent) 24%, transparent);
+}
+
+/* شاشة التحميل */
+.reader2-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 14px;
+  background: var(--r2-bg);
+  color: var(--r2-muted);
+  transition: opacity 0.28s var(--ease), visibility 0.28s var(--ease);
+}
+
+.reader2-loading p {
+  margin: 0;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.reader2-loading.is-done {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.reader2-loader {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid color-mix(in srgb, var(--r2-line-c) 80%, transparent);
+  border-top-color: var(--r2-accent);
+  animation: r2-spin 0.85s linear infinite;
+}
+
+/* الشريط العلوي */
+.reader2-topbar {
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  z-index: 24;
+  transition: transform 0.34s var(--ease);
+}
+
+.reader2.is-compact .reader2-topbar {
+  transform: translateY(-104%);
+}
+
+.reader2-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 68px;
+  padding: max(9px, env(safe-area-inset-top)) clamp(10px, 2.4vw, 22px) 9px;
+  background: var(--r2-glass);
+  border-bottom: 1px solid color-mix(in srgb, var(--r2-line-c) 76%, transparent);
+  backdrop-filter: blur(20px) saturate(1.25);
+  -webkit-backdrop-filter: blur(20px) saturate(1.25);
+}
+
+.reader2-top-progress {
+  height: 3px;
+  background: color-mix(in srgb, var(--r2-line-c) 70%, transparent);
+}
+
+.reader2-top-progress i {
+  display: block;
+  width: 0;
+  height: 100%;
+  border-radius: 99px 0 0 99px;
+  background: linear-gradient(270deg, color-mix(in srgb, var(--r2-accent) 55%, white), var(--r2-accent));
+  transition: width 0.18s linear;
+}
+
+.r2-icon {
+  flex: 0 0 auto;
+  width: 39px;
+  height: 39px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: var(--r2-ink);
+  cursor: pointer;
+  transition: background 0.18s var(--ease), color 0.18s var(--ease), transform 0.18s var(--ease);
+}
+
+.r2-icon svg {
+  width: 21px;
+  height: 21px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.r2-icon:hover {
+  background: var(--r2-accent-soft);
+  color: var(--r2-accent);
+}
+
+.r2-icon:active {
+  transform: scale(0.94);
+}
+
+.r2-icon.is-on {
+  color: var(--r2-accent);
+}
+
+.r2-icon.is-on svg {
+  fill: color-mix(in srgb, var(--r2-accent) 18%, transparent);
+}
+
+.r2-back {
+  background: color-mix(in srgb, var(--r2-line-c) 36%, transparent);
+}
+
+.reader2-book {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 3px 5px;
+  border: 0;
+  border-radius: 12px;
+  background: transparent;
+  color: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+.reader2-book:hover {
+  background: color-mix(in srgb, var(--r2-line-c) 30%, transparent);
+}
+
+.reader2-thumb {
+  flex: 0 0 auto;
+  width: 34px;
+  height: 47px;
+  border-radius: 4px 8px 8px 4px;
+  overflow: hidden;
+  position: relative;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--r2-accent) 55%, #7c4a22), #3a2414);
+  box-shadow: 0 4px 12px -5px rgba(0, 0, 0, 0.55), inset 2px 0 0 rgba(255, 255, 255, 0.18);
+  color: #fff;
+  font-size: 0.65rem;
+  font-weight: 900;
+}
+
+.reader2-thumb-fallback {
+  position: relative;
+  z-index: 0;
+}
+
+.reader2-thumb img {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reader2-book-text {
+  min-width: 0;
+  display: grid;
+  gap: 1px;
+}
+
+.reader2-book-text strong {
+  font-size: 0.9rem;
+  font-weight: 800;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reader2-book-text small {
+  color: var(--r2-muted);
+  font-size: 0.72rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reader2-tools {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 1px;
+}
+
+.r2-ai-button {
+  color: var(--r2-accent);
+}
+
+/* مسرح القراءة */
+.reader2-stage {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scroll-behavior: auto;
+  -webkit-overflow-scrolling: touch;
+  outline: none;
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--r2-accent) 40%, transparent) transparent;
+}
+
+.reader2-stage::-webkit-scrollbar {
+  width: 10px;
+}
+
+.reader2-stage::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--r2-accent) 38%, transparent);
+  background-clip: padding-box;
+}
+
+.reader2-flow {
+  position: relative;
+  width: calc(100% - clamp(12px, 4vw, 44px));
+  max-width: calc(var(--r2-width) + clamp(36px, 10vw, 112px));
+  min-height: 100%;
+  margin: 0 auto;
+  padding: clamp(82px, 10vh, 104px) clamp(18px, 5vw, 56px) 270px;
+  background: var(--r2-page);
+  border-radius: 0 0 24px 24px;
+  box-shadow:
+    0 30px 70px -48px rgba(0, 0, 0, 0.55),
+    0 1px 0 color-mix(in srgb, var(--r2-line-c) 70%, transparent);
+}
+
+.reader2-chapter {
+  position: relative;
+  padding-bottom: clamp(46px, 7vh, 78px);
+}
+
+.reader2-notice {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  margin: 18px 0 0;
+  padding: 10px 12px;
+  border: 1px solid color-mix(in srgb, #b45309 34%, transparent);
+  background: color-mix(in srgb, #b45309 11%, transparent);
+  color: #b45309;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  line-height: 1.6;
+}
+
+.reader2-notice span:first-child {
+  flex: none;
+}
+
+.reader2-chapter + .reader2-chapter {
+  padding-top: clamp(46px, 7vh, 78px);
+  border-top: 1px solid color-mix(in srgb, var(--r2-line-c) 72%, transparent);
+}
+
+.reader2-chapter[data-loaded='false'] {
+  min-height: var(--r2-est, 480px);
+}
+
+.reader2-chapter[data-loaded='false'] .reader2-chapter-body {
+  height: calc(var(--r2-est, 480px) - 116px);
+  overflow: hidden;
+}
+
+.reader2-chapter[data-loaded='false'] .reader2-chapter-body::after {
+  content: '…';
+  display: block;
+  margin-top: 18px;
+  color: var(--r2-muted);
+  font-size: 0.9rem;
+  letter-spacing: 0.4em;
+  opacity: 0.55;
+  animation: r2-breathe 1.6s ease-in-out infinite;
+}
+
+.reader2-chapter-head {
+  margin-bottom: clamp(20px, 4vh, 34px);
+}
+
+.reader2-chapter-kicker {
+  display: inline-block;
+  margin-bottom: 8px;
+  color: var(--r2-accent);
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+}
+
+.reader2-chapter-head h2 {
+  margin: 0;
+  max-width: 26ch;
+  font-family: var(--font-display, var(--font-ar));
+  font-size: clamp(1.45rem, 1.12rem + 1.1vw, 2.15rem);
+  font-weight: 800;
+  line-height: 1.36;
+  letter-spacing: -0.01em;
+  color: var(--r2-ink);
+}
+
+.reader2-chapter-rule {
+  display: block;
+  width: 52px;
+  height: 3px;
+  margin-top: 16px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--r2-accent), color-mix(in srgb, var(--r2-accent) 25%, transparent));
+}
+
+.reader2-chapter-body {
+  font-family: var(--r2-font);
+  font-size: var(--r2-size);
+  line-height: var(--r2-line);
+  color: var(--r2-ink);
+  overflow-wrap: anywhere;
+  text-align: start;
+}
+
+.reader2.is-justified .reader2-chapter-body p,
+.reader2.is-justified .reader2-chapter-body li {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.reader2-chapter-body p {
+  margin: 0 0 1.02em;
+}
+
+.reader2-chapter-body > :first-child {
+  margin-top: 0;
+}
+
+.reader2-chapter-body h1,
+.reader2-chapter-body h2,
+.reader2-chapter-body h3,
+.reader2-chapter-body h4,
+.reader2-chapter-body h5,
+.reader2-chapter-body h6 {
+  margin: 1.5em 0 0.6em;
+  font-family: var(--font-display, var(--font-ar));
+  line-height: 1.4;
+  color: var(--r2-ink);
+}
+
+.reader2-chapter-body h1 {
+  font-size: 1.55em;
+}
+
+.reader2-chapter-body h2 {
+  font-size: 1.34em;
+}
+
+.reader2-chapter-body h3 {
+  font-size: 1.16em;
+}
+
+.reader2-chapter-body h4,
+.reader2-chapter-body h5,
+.reader2-chapter-body h6 {
+  font-size: 1.04em;
+}
+
+.reader2-chapter-body a {
+  color: var(--r2-accent);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
+.reader2-chapter-body strong {
+  font-weight: 800;
+}
+
+.reader2-chapter-body blockquote {
+  margin: 1.4em 0;
+  padding: 0.2em 1.1em 0.2em 0;
+  border-inline-start: 3px solid color-mix(in srgb, var(--r2-accent) 55%, transparent);
+  color: color-mix(in srgb, var(--r2-ink) 88%, var(--r2-muted));
+  font-style: italic;
+}
+
+.reader2-chapter-body blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+.reader2-chapter-body ul,
+.reader2-chapter-body ol {
+  margin: 0 0 1.1em;
+  padding-inline-start: 1.5em;
+}
+
+.reader2-chapter-body li {
+  margin-bottom: 0.4em;
+}
+
+.reader2-chapter-body img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+  border-radius: 14px;
+}
+
+.reader2-chapter-body figure {
+  margin: 1.6em 0;
+  padding: 10px;
+  border: 1px solid color-mix(in srgb, var(--r2-line-c) 80%, transparent);
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--r2-line-c) 28%, transparent);
+}
+
+.reader2-chapter-body figure img {
+  border-radius: 11px;
+}
+
+.reader2-chapter-body figcaption {
+  margin-top: 9px;
+  color: var(--r2-muted);
+  font-size: 0.74em;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* صفحات PDF: الصورة هي العرض الافتراضي. النص المستخرج يبقى مخفيًا في DOM
+   ليعمل البحث والمساعد الذكي، ويظهر عند اختيار «النص المستخرج». */
+.reader2-chapter-body .pdf-page {
+  position: relative;
+  padding: 6px;
+  background: color-mix(in srgb, var(--r2-line-c) 24%, transparent);
+}
+
+.reader2-chapter-body .pdf-page > img {
+  width: 100%;
+}
+
+.reader2-chapter-body .pdf-page-text {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.reader2.is-pdf-text .reader2-chapter-body .pdf-page-text {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip-path: none;
+  white-space: normal;
+}
+
+.reader2.is-pdf-text .reader2-chapter-body .pdf-page > img {
+  display: none;
+}
+
+/* النص المستخرج من صفحات الخطوط التالفة يبقى للقراءة الآلية فقط */
+.reader2-chapter-body .pdf-page-text[data-no-text] {
+  display: none !important;
+}
+
+.reader2.is-pdf-text .reader2-chapter-body .pdf-page[data-broken="1"]::after {
+  content: "هذه الصفحة صورة بخطوط تالفة، وما إلها نص موثوق. رجّع العرض إلى «صور الصفحات».";
+  display: block;
+  padding: 22px 12px;
+  color: var(--r2-muted);
+  text-align: center;
+  line-height: 1.9;
+}
+
+/* تنبيه المساعد حين تكون الصفحة صورة ولا يوجد مزوّد رؤية */
+.ai-needs-vision {
+  border: 1px solid color-mix(in srgb, var(--r2-accent) 35%, transparent);
+  background: color-mix(in srgb, var(--r2-accent) 8%, transparent);
+  border-radius: 16px;
+  padding: 14px 16px;
+}
+
+.ai-needs-vision p {
+  margin: 0 0 8px;
+  line-height: 1.9;
+}
+
+.reader2-chapter-body hr {
+  margin: 2em auto;
+  width: 42%;
+  border: 0;
+  border-top: 1px solid var(--r2-line-c);
+}
+
+.reader2-chapter-body code {
+  padding: 0.12em 0.34em;
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--r2-line-c) 60%, transparent);
+  font-family: ui-monospace, 'Segoe UI Mono', monospace;
+  font-size: 0.86em;
+  direction: ltr;
+  unicode-bidi: embed;
+}
+
+.reader2-chapter-body pre {
+  padding: 14px 16px;
+  border-radius: 14px;
+  overflow-x: auto;
+  background: color-mix(in srgb, var(--r2-line-c) 55%, transparent);
+  direction: ltr;
+  text-align: left;
+}
+
+.reader2-chapter-body pre code {
+  padding: 0;
+  background: none;
+}
+
+.r2-table-wrap {
+  margin: 1.4em 0;
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid var(--r2-line-c);
+}
+
+.reader2-chapter-body table {
+  width: 100%;
+  min-width: 420px;
+  border-collapse: collapse;
+  font-size: 0.86em;
+}
+
+.reader2-chapter-body th,
+.reader2-chapter-body td {
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--r2-line-c);
+  text-align: start;
+}
+
+.reader2-chapter-body th {
+  background: color-mix(in srgb, var(--r2-line-c) 40%, transparent);
+  font-weight: 800;
+}
+
+.reader2-chapter-body mark,
+mark.reader2-hit {
+  padding: 0.03em 0.14em;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--r2-accent) 26%, transparent);
+  color: inherit;
+}
+
+mark.reader2-hit.is-target {
+  scroll-margin-top: 92px;
+  background: color-mix(in srgb, var(--r2-accent) 46%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--r2-accent) 20%, transparent);
+}
+
+mark.reader2-hit.is-pulse {
+  animation: r2-hit 1.6s ease-out;
+}
+
+/* بطاقة النهاية */
+.reader2-endcard {
+  margin: 12px auto 0;
+  padding: clamp(24px, 5vw, 38px);
+  border: 1px dashed color-mix(in srgb, var(--r2-accent) 35%, var(--r2-line-c));
+  border-radius: 22px;
+  background: color-mix(in srgb, var(--r2-accent) 5%, transparent);
+  text-align: center;
+}
+
+.reader2-end-star {
+  display: block;
+  color: var(--r2-accent);
+  font-size: 1.4rem;
+}
+
+.reader2-endcard h3 {
+  margin: 8px 0 6px;
+  font-family: var(--font-display, var(--font-ar));
+  font-size: 1.25rem;
+}
+
+.reader2-endcard p {
+  margin: 0 auto 18px;
+  max-width: 42ch;
+  color: var(--r2-muted);
+  font-size: 0.85rem;
+  line-height: 1.8;
+}
+
+.reader2-end-actions,
+.reader2-cover-actions,
+.reader2-display-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.reader2-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 40px;
+  padding: 8px 18px;
+  border: 1px solid transparent;
+  border-radius: 99px;
+  background: var(--r2-accent);
+  color: #fff;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 800;
+  cursor: pointer;
+  transition: filter 0.18s var(--ease), transform 0.18s var(--ease);
+}
+
+.reader2-pill svg {
+  width: 17px;
+  height: 17px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+}
+
+.reader2-pill:hover {
+  filter: brightness(1.06);
+}
+
+.reader2-pill:active {
+  transform: scale(0.98);
+}
+
+.reader2-pill.is-ghost {
+  background: transparent;
+  border-color: color-mix(in srgb, var(--r2-line-c) 90%, var(--r2-muted));
+  color: var(--r2-ink);
+}
+
+/* شريط التقدم السفلي */
+.reader2-dock {
+  position: absolute;
+  z-index: 22;
+  inset-inline: 0;
+  bottom: max(10px, env(safe-area-inset-bottom));
+  width: min(760px, calc(100% - 20px));
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 9px;
+  border: 1px solid color-mix(in srgb, var(--r2-line-c) 80%, transparent);
+  border-radius: 22px;
+  background: var(--r2-glass);
+  box-shadow: 0 18px 45px -28px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+}
+
+.r2-nav {
+  flex: 0 0 auto;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--r2-line-c) 34%, transparent);
+  color: var(--r2-ink);
+  cursor: pointer;
+  transition: background 0.18s var(--ease), color 0.18s var(--ease);
+}
+
+.r2-nav svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.r2-nav:hover {
+  background: var(--r2-accent-soft);
+  color: var(--r2-accent);
+}
+
+.reader2-seek {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: grid;
+  gap: 1px;
+  padding-inline: 2px;
+}
+
+.reader2-seek input[type='range'] {
+  width: 100%;
+  height: 20px;
+  margin: 0;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  cursor: pointer;
+  direction: ltr;
+}
+
+.reader2-seek input[type='range']::-webkit-slider-runnable-track {
+  height: 5px;
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--r2-line-c) 85%, var(--r2-muted));
+}
+
+.reader2-seek input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 17px;
+  height: 17px;
+  margin-top: -6px;
+  border-radius: 50%;
+  border: 3px solid var(--r2-page);
+  background: var(--r2-accent);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.28);
+}
+
+.reader2-seek input[type='range']::-moz-range-track {
+  height: 5px;
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--r2-line-c) 85%, var(--r2-muted));
+}
+
+.reader2-seek input[type='range']::-moz-range-thumb {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  border: 3px solid var(--r2-page);
+  background: var(--r2-accent);
+}
+
+.reader2-seek-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  color: var(--r2-muted);
+  font-size: 0.67rem;
+  line-height: 1.2;
+}
+
+.reader2-seek-meta span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reader2-seek-meta b {
+  flex: 0 0 auto;
+  color: var(--r2-accent);
+  font-size: 0.7rem;
+  font-weight: 900;
+}
+
+.reader2-hint {
+  position: absolute;
+  z-index: 33;
+  inset-inline: 0;
+  bottom: 82px;
+  width: max-content;
+  max-width: calc(100% - 40px);
+  margin-inline: auto;
+  padding: 8px 16px;
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--r2-ink) 88%, transparent);
+  color: var(--r2-page);
+  font-size: 0.76rem;
+  font-weight: 700;
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: opacity 0.22s var(--ease), transform 0.22s var(--ease);
+}
+
+.reader2-hint.is-on {
+  opacity: 1;
+  transform: none;
+}
+
+/* اللوحات الجانبية */
+.reader2-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 34;
+  background: rgba(12, 9, 6, 0.34);
+  backdrop-filter: blur(2px);
+  animation: r2-fade 0.2s var(--ease);
+}
+
+.reader2-sheet {
+  position: absolute;
+  z-index: 36;
+  top: 0;
+  bottom: 0;
+  inset-inline-start: 0;
+  width: min(440px, 100%);
+  display: flex;
+  flex-direction: column;
+  background: var(--r2-page);
+  border-inline-end: 1px solid color-mix(in srgb, var(--r2-line-c) 80%, transparent);
+  box-shadow: 30px 0 80px -60px rgba(0, 0, 0, 0.7);
+  transform: translateX(104%);
+  transition: transform 0.28s cubic-bezier(0.22, 0.8, 0.3, 1);
+  color: var(--r2-ink);
+}
+
+.reader2-sheet.is-open {
+  transform: none;
+}
+
+.reader2-sheet-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  padding: max(16px, env(safe-area-inset-top)) 16px 12px;
+  border-bottom: 1px solid color-mix(in srgb, var(--r2-line-c) 70%, transparent);
+}
+
+.reader2-sheet-head h3 {
+  margin: 2px 0 0;
+  font-family: var(--font-display, var(--font-ar));
+  font-size: 1.18rem;
+  line-height: 1.3;
+}
+
+.reader2-sheet-head .r2-icon {
+  width: 34px;
+  height: 34px;
+  background: color-mix(in srgb, var(--r2-line-c) 34%, transparent);
+}
+
+.r2-eyebrow {
+  display: inline-block;
+  color: var(--r2-accent);
+  font-size: 0.66rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+}
+
+.reader2-tabs {
+  display: flex;
+  gap: 6px;
+  padding: 10px 14px;
+  border-bottom: 1px solid color-mix(in srgb, var(--r2-line-c) 60%, transparent);
+}
+
+.reader2-tabs button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 38px;
+  padding: 6px 10px;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  background: transparent;
+  color: var(--r2-muted);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.reader2-tabs button b {
+  padding: 1px 7px;
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--r2-line-c) 55%, transparent);
+  font-size: 0.66rem;
+}
+
+.reader2-tabs button.is-active {
+  background: var(--r2-accent-soft);
+  color: var(--r2-accent);
+  border-color: color-mix(in srgb, var(--r2-accent) 26%, transparent);
+}
+
+.reader2-sheet-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 14px;
+  scrollbar-width: thin;
+}
+
+.reader2-sheet-body[hidden] {
+  display: none !important;
+}
+
+.reader2-searchbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid color-mix(in srgb, var(--r2-line-c) 90%, var(--r2-muted));
+  border-radius: 13px;
+  background: color-mix(in srgb, var(--r2-line-c) 24%, transparent);
+  color: var(--r2-muted);
+}
+
+.reader2-searchbox:focus-within {
+  border-color: color-mix(in srgb, var(--r2-accent) 55%, transparent);
+  box-shadow: 0 0 0 3px var(--r2-accent-soft);
+}
+
+.reader2-searchbox svg {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+}
+
+.reader2-searchbox input {
+  flex: 1;
+  min-width: 0;
+  border: 0;
+  background: transparent;
+  color: var(--r2-ink);
+  font: inherit;
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.reader2-searchbox input::placeholder {
+  color: color-mix(in srgb, var(--r2-muted) 80%, transparent);
+}
+
+.reader2-searchbox.is-large {
+  min-height: 50px;
+}
+
+.reader2-search-note {
+  margin: 10px 4px 12px;
+  color: var(--r2-muted);
+  font-size: 0.73rem;
+  line-height: 1.6;
+}
+
+.reader2-toc-list,
+.reader2-bookmark-list,
+.reader2-search-results {
+  display: grid;
+  gap: 4px;
+  margin-top: 12px;
+}
+
+.reader2-toc-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 10px 10px;
+  border: 1px solid transparent;
+  border-radius: 13px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+.reader2-toc-row:hover {
+  background: color-mix(in srgb, var(--r2-line-c) 36%, transparent);
+}
+
+.reader2-toc-row.is-current {
+  background: var(--r2-accent-soft);
+  border-color: color-mix(in srgb, var(--r2-accent) 25%, transparent);
+}
+
+.reader2-toc-num {
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--r2-line-c) 52%, transparent);
+  color: var(--r2-muted);
+  font-size: 0.72rem;
+  font-weight: 900;
+}
+
+.reader2-toc-row.is-current .reader2-toc-num {
+  background: var(--r2-accent);
+  color: #fff;
+}
+
+.reader2-toc-text {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 2px;
+}
+
+.reader2-toc-text strong {
+  font-size: 0.83rem;
+  font-weight: 800;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reader2-toc-text small {
+  color: var(--r2-muted);
+  font-size: 0.67rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reader2-now {
+  flex: 0 0 auto;
+  padding: 2px 7px;
+  border-radius: 99px;
+  background: var(--r2-accent);
+  color: #fff;
+  font-size: 0.62rem;
+  font-weight: 900;
+}
+
+.reader2-bookmark {
+  display: flex;
+  align-items: stretch;
+  gap: 4px;
+  border-radius: 13px;
+  border: 1px solid color-mix(in srgb, var(--r2-line-c) 75%, transparent);
+  background: color-mix(in srgb, var(--r2-line-c) 18%, transparent);
+}
+
+.reader2-bookmark-main {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+  padding: 11px 12px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+.reader2-bookmark-title {
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.reader2-bookmark-main small {
+  color: var(--r2-muted);
+  font-size: 0.7rem;
+  line-height: 1.55;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.reader2-bookmark-del {
+  flex: 0 0 auto;
+  width: 38px;
+  border: 0;
+  border-inline-start: 1px solid color-mix(in srgb, var(--r2-line-c) 70%, transparent);
+  background: transparent;
+  color: var(--r2-muted);
+  cursor: pointer;
+  border-radius: 0 12px 12px 0;
+}
+
+.reader2-bookmark-del svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.reader2-bookmark-del:hover {
+  color: #c0392b;
+  background: color-mix(in srgb, #c0392b 8%, transparent);
+}
+
+.reader2-result {
+  width: 100%;
+  padding: 11px 12px;
+  border: 1px solid transparent;
+  border-radius: 13px;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+
+.reader2-result:hover {
+  background: color-mix(in srgb, var(--r2-line-c) 36%, transparent);
+}
+
+.reader2-result-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 5px;
+}
+
+.reader2-result-head b {
+  font-size: 0.8rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.reader2-result-head i {
+  flex: 0 0 auto;
+  color: var(--r2-muted);
+  font-size: 0.66rem;
+  font-style: normal;
+  font-weight: 800;
+}
+
+.reader2-result p {
+  margin: 0;
+  color: var(--r2-muted);
+  font-size: 0.75rem;
+  line-height: 1.7;
+}
+
+.reader2-result mark {
+  padding: 0 2px;
+  border-radius: 3px;
+  background: color-mix(in srgb, var(--r2-accent) 25%, transparent);
+  color: var(--r2-ink);
+  font-weight: 800;
+}
+
+.reader2-empty {
+  margin: 20px 6px;
+  color: var(--r2-muted);
+  font-size: 0.8rem;
+  line-height: 1.7;
+}
+
+.reader2-empty-state {
+  display: grid;
+  justify-items: center;
+  gap: 7px;
+  padding: 34px 18px;
+  text-align: center;
+  color: var(--r2-muted);
+}
+
+.reader2-empty-state > span {
+  font-size: 1.6rem;
+}
+
+.reader2-empty-state strong {
+  color: var(--r2-ink);
+  font-size: 0.95rem;
+}
+
+.reader2-empty-state p {
+  margin: 0 0 8px;
+  max-width: 34ch;
+  font-size: 0.78rem;
+  line-height: 1.7;
+}
+
+/* لوحة المظهر */
+.r2-control {
+  padding: 14px 2px;
+  border-bottom: 1px solid color-mix(in srgb, var(--r2-line-c) 62%, transparent);
+}
+
+.r2-control:first-child {
+  padding-top: 2px;
+}
+
+.r2-control-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
+.r2-control-head small {
+  color: var(--r2-muted);
+  font-size: 0.68rem;
+  font-weight: 500;
+}
+
+.r2-control-head b {
+  color: var(--r2-accent);
+  font-size: 0.78rem;
+}
+
+.reader2-themes {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+}
+
+.reader2-theme {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 8px;
+  border: 1px solid color-mix(in srgb, var(--r2-line-c) 80%, transparent);
+  border-radius: 11px;
+  background: transparent;
+  color: var(--r2-muted);
+  font: inherit;
+  font-size: 0.66rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.reader2-theme i {
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background: var(--swatch);
+  border: 1px solid color-mix(in srgb, var(--r2-ink) 16%, transparent);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.24);
+}
+
+.reader2-theme.is-active {
+  border-color: var(--r2-accent);
+  color: var(--r2-accent);
+  background: var(--r2-accent-soft);
+}
+
+.r2-range {
+  width: 100%;
+  height: 22px;
+  appearance: none;
+  -webkit-appearance: none;
+  background: transparent;
+  cursor: pointer;
+  direction: ltr;
+}
+
+.r2-range::-webkit-slider-runnable-track {
+  height: 5px;
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--r2-line-c) 85%, var(--r2-muted));
+}
+
+.r2-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  margin-top: -6.5px;
+  border-radius: 50%;
+  border: 3px solid var(--r2-page);
+  background: var(--r2-accent);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.25);
+}
+
+.r2-range::-moz-range-track {
+  height: 5px;
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--r2-line-c) 85%, var(--r2-muted));
+}
+
+.r2-range::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 3px solid var(--r2-page);
+  background: var(--r2-accent);
+}
+
+.reader2-segment {
+  display: flex;
+  gap: 5px;
+  padding: 3px;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--r2-line-c) 34%, transparent);
+}
+
+.reader2-segment button {
+  flex: 1;
+  min-height: 34px;
+  padding: 4px 8px;
+  border: 0;
+  border-radius: 9px;
+  background: transparent;
+  color: var(--r2-muted);
+  font: inherit;
+  font-size: 0.73rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.reader2-segment button.is-active {
+  background: var(--r2-page);
+  color: var(--r2-accent);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+
+.reader2-switch {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 15px 2px;
+  border-bottom: 1px solid color-mix(in srgb, var(--r2-line-c) 62%, transparent);
+  cursor: pointer;
+}
+
+.reader2-switch span {
+  display: grid;
+  gap: 2px;
+}
+
+.reader2-switch strong {
+  font-size: 0.82rem;
+}
+
+.reader2-switch small {
+  color: var(--r2-muted);
+  font-size: 0.68rem;
+}
+
+.reader2-switch input {
+  appearance: none;
+  -webkit-appearance: none;
+  position: relative;
+  width: 42px;
+  height: 24px;
+  flex: 0 0 auto;
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--r2-line-c) 85%, var(--r2-muted));
+  cursor: pointer;
+  transition: background 0.2s var(--ease);
+}
+
+.reader2-switch input::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  inset-inline-start: 3px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--r2-page);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+  transition: inset-inline-start 0.2s var(--ease);
+}
+
+.reader2-switch input:checked {
+  background: var(--r2-accent);
+}
+
+.reader2-switch input:checked::after {
+  inset-inline-start: 21px;
+}
+
+.reader2-reading-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 6px;
+  padding: 15px 0;
+}
+
+.reader2-reading-stats div {
+  display: grid;
+  gap: 2px;
+  padding: 9px 8px;
+  border-radius: 11px;
+  background: color-mix(in srgb, var(--r2-line-c) 28%, transparent);
+  text-align: center;
+}
+
+.reader2-reading-stats small {
+  color: var(--r2-muted);
+  font-size: 0.62rem;
+}
+
+.reader2-reading-stats strong {
+  color: var(--r2-accent);
+  font-size: 0.8rem;
+}
+
+/* بطاقة الكتاب */
+.reader2-cover-hero {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.reader2-cover-art {
+  flex: 0 0 auto;
+  width: 116px;
+  aspect-ratio: 2 / 3;
+  border-radius: 5px 12px 12px 5px;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--r2-accent) 55%, #6b411f), #34200f);
+  color: #fff;
+  box-shadow: 0 16px 28px -18px rgba(0, 0, 0, 0.65), inset 3px 0 0 rgba(255, 255, 255, 0.16);
+  font-size: 1.4rem;
+  font-weight: 900;
+}
+
+.reader2-cover-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reader2-cover-copy {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  gap: 5px;
+}
+
+.reader2-cover-copy h3 {
+  margin: 0;
+  font-family: var(--font-display, var(--font-ar));
+  font-size: 1.2rem;
+  line-height: 1.4;
+}
+
+.reader2-cover-copy p {
+  margin: 0;
+  color: var(--r2-muted);
+  font-size: 0.78rem;
+}
+
+.reader2-cover-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 5px;
+}
+
+.reader2-cover-chips span {
+  padding: 2px 7px;
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--r2-line-c) 42%, transparent);
+  color: var(--r2-muted);
+  font-size: 0.62rem;
+  font-weight: 700;
+}
+
+.reader2-cover-progress {
+  margin: 18px 0 16px;
+  padding: 12px;
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--r2-line-c) 26%, transparent);
+}
+
+.reader2-cover-progress > div:first-child {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.reader2-cover-progress b {
+  color: var(--r2-accent);
+}
+
+.reader2-cover-bar {
+  height: 7px;
+  margin: 8px 0 7px;
+  border-radius: 99px;
+  background: color-mix(in srgb, var(--r2-line-c) 85%, var(--r2-muted));
+  overflow: hidden;
+}
+
+.reader2-cover-bar i {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, color-mix(in srgb, var(--r2-accent) 55%, white), var(--r2-accent));
+}
+
+.reader2-cover-progress small {
+  color: var(--r2-muted);
+  font-size: 0.68rem;
+}
+
+.reader2-cover-actions {
+  justify-content: flex-start;
+}
+
+.reader2-privacy {
+  margin: 14px 2px 0;
+  color: var(--r2-muted);
+  font-size: 0.68rem;
+  line-height: 1.7;
+}
+
+/* توافق مساعد القراءة مع متغيرات القارئ الجديد */
+.reader2 .reader-ai-host {
+  z-index: 32;
+}
+
+.reader2 .reader-icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  padding: 0;
+  border: 1px solid var(--r2-line-c);
+  border-radius: 50%;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.reader2 .reader-icon:hover {
+  background: var(--r2-accent-soft);
+  color: var(--r2-accent);
+}
+
+/* الحركة */
+@keyframes r2-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes r2-breathe {
+  50% {
+    opacity: 0.2;
+  }
+}
+
+@keyframes r2-fade {
+  from {
+    opacity: 0;
+  }
+}
+
+@keyframes r2-hit {
+  0% {
+    background: color-mix(in srgb, var(--r2-accent) 65%, transparent);
+  }
+}
+
+@media (max-width: 760px) {
+  .reader2-bar {
+    gap: 2px;
+    min-height: 62px;
+    padding-inline: 7px;
+  }
+
+  .reader2-thumb {
+    width: 30px;
+    height: 42px;
+  }
+
+  .reader2-book {
+    gap: 7px;
+    padding-inline: 2px;
+  }
+
+  .reader2-book-text strong {
+    font-size: 0.82rem;
+  }
+
+  .reader2-book-text small {
+    font-size: 0.66rem;
+  }
+
+  .reader2-tools {
+    gap: 0;
+  }
+
+  .r2-icon {
+    width: 35px;
+    height: 35px;
+  }
+
+  .r2-icon svg {
+    width: 19px;
+    height: 19px;
+  }
+
+  .reader2-flow {
+    width: 100%;
+    max-width: none;
+    padding: 84px 19px 250px;
+    border-radius: 0;
+  }
+
+  .reader2-chapter-head h2 {
+    max-width: none;
+  }
+
+  .reader2-dock {
+    width: calc(100% - 14px);
+    bottom: max(7px, env(safe-area-inset-bottom));
+    padding: 6px 7px;
+    border-radius: 19px;
+  }
+
+  .r2-nav {
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+  }
+
+  .reader2-sheet {
+    top: auto;
+    bottom: 0;
+    inset-inline: 0;
+    width: 100%;
+    max-height: min(84dvh, 760px);
+    border-radius: 22px 22px 0 0;
+    border-inline-end: 0;
+    border-top: 1px solid color-mix(in srgb, var(--r2-line-c) 80%, transparent);
+    transform: translateY(104%);
+    box-shadow: 0 -30px 80px -60px rgba(0, 0, 0, 0.7);
+  }
+
+  .reader2-sheet.is-open {
+    transform: translateY(0);
+  }
+
+  .reader2-sheet-head {
+    padding-top: 14px;
+  }
+
+  .reader2-hint {
+    bottom: 76px;
+  }
+
+  .reader2-cover-art {
+    width: 96px;
+  }
+}
+
+@media (max-width: 430px) {
+  .reader2-book-text strong {
+    max-width: 28vw;
+  }
+
+  .reader2-book-text small {
+    max-width: 32vw;
+  }
+
+  .reader2-thumb {
+    display: none;
+  }
+
+  .reader2-themes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reader2 *,
+  .reader2 *::before,
+  .reader2 *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.reader2-topbar .r2-quick-view {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 34px;
+  padding: 0 11px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--r2-ink) 18%, transparent);
+  background: color-mix(in srgb, var(--r2-panel) 70%, transparent);
+  color: var(--r2-ink);
+  font-size: 0.72rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+.reader2-topbar .r2-quick-view:hover {
+  border-color: var(--r2-accent);
+  color: var(--r2-accent);
+}
+.reader2-topbar .r2-quick-view[data-mode="text"] {
+  background: color-mix(in srgb, var(--r2-accent) 14%, transparent);
+  border-color: color-mix(in srgb, var(--r2-accent) 40%, transparent);
+  color: var(--r2-accent);
+}
+
+/* ==========================================================================
+   طرق القراءة: تدفّق · صفحات · مزدوج · تركيز
+   ========================================================================== */
+
+.reader2 {
+  --r2-page-h: 640px;
+}
+
+.reader2-stage {
+  position: relative;
+}
+
+.reader2-flow[hidden] {
+  display: none !important;
+}
+
+.reader2-stage.is-locked {
+  overflow: hidden;
+}
+
+/* ---------- شريط طريقة القراءة في الشريط السفلي ---------- */
+.r2-mode-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-width: 44px;
+  gap: 6px;
+  padding-inline: 11px 12px;
+  background: var(--r2-accent-soft);
+  color: var(--r2-accent);
+}
+
+.r2-mode-btn .r2-mode-icon {
+  display: grid;
+  place-items: center;
+}
+
+.r2-mode-btn .r2-mode-icon svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.r2-mode-btn .r2-mode-label {
+  font-size: 0.68rem;
+  font-weight: 900;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.r2-mode-btn:hover {
+  background: color-mix(in srgb, var(--r2-accent) 20%, transparent);
+}
+
+/* ---------- وضع الصفحات ---------- */
+.r2-paged {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  animation: r2-fade 0.24s var(--ease);
+}
+
+.r2-paged[hidden] {
+  display: none !important;
+}
+
+.r2-paged-viewport {
+  --r2-pad: clamp(16px, 5vw, 56px);
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: clamp(78px, 9vh, 102px) var(--r2-pad) clamp(92px, 12vh, 120px);
+  overflow: hidden;
+  outline: none;
+  touch-action: pan-y pinch-zoom;
+  clip-path: inset(0 var(--r2-pad));
+  background:
+    linear-gradient(90deg, color-mix(in srgb, var(--r2-ink) 4%, transparent), transparent 8%),
+    linear-gradient(270deg, color-mix(in srgb, var(--r2-ink) 4%, transparent), transparent 8%);
+}
+
+.r2-paged-track {
+  height: 100%;
+  column-fill: auto;
+  column-gap: clamp(26px, 4.6vw, 64px);
+  column-count: 1;
+  direction: rtl;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.r2-paged-viewport[data-cols='2']::after {
+  content: '';
+  position: absolute;
+  top: clamp(90px, 11vh, 118px);
+  bottom: clamp(100px, 13vh, 130px);
+  left: 50%;
+  width: 1px;
+  transform: translateX(-0.5px);
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    color-mix(in srgb, var(--r2-muted) 44%, transparent) 18%,
+    color-mix(in srgb, var(--r2-muted) 44%, transparent) 82%,
+    transparent
+  );
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.r2-page-chapter {
+  min-height: 100%;
+}
+
+.r2-page-chapter .reader2-chapter-head {
+  margin-bottom: clamp(16px, 2.6vh, 26px);
+}
+
+.r2-page-chapter .reader2-chapter-head h2 {
+  max-width: none;
+  font-size: clamp(1.35rem, 1rem + 1vw, 1.9rem);
+}
+
+.r2-page-chapter .reader2-chapter-rule {
+  margin-top: 12px;
+}
+
+.r2-paged .reader2-chapter-body {
+  orphans: 3;
+  widows: 3;
+}
+
+.r2-paged .reader2-chapter-body p {
+  margin-bottom: 0.94em;
+}
+
+/* لا نكسر البطاقات والجداول بين صفحتين */
+.r2-paged .reader2-chapter-body figure,
+.r2-paged .reader2-chapter-body .pdf-page,
+.r2-paged .reader2-chapter-body blockquote,
+.r2-paged .reader2-chapter-body .r2-table-wrap,
+.r2-paged .reader2-chapter-body pre {
+  break-inside: avoid;
+}
+
+/* الجداول والأكواد الطويلة تبقى داخل الصفحة بدل أن تُقصّ */
+.r2-paged .reader2-chapter-body .r2-table-wrap,
+.r2-paged .reader2-chapter-body pre {
+  max-height: calc(var(--r2-page-h) - 40px);
+  overflow: auto;
+  scrollbar-width: thin;
+}
+
+.r2-paged .reader2-chapter-body img {
+  max-height: calc(var(--r2-page-h) - 80px);
+  width: auto;
+  max-width: 100%;
+  margin-inline: auto;
+  object-fit: contain;
+}
+
+.r2-paged .reader2-chapter-body .pdf-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 0 12px;
+}
+
+.r2-paged .reader2-chapter-body .pdf-page > img {
+  width: auto;
+  max-height: calc(var(--r2-page-h) - 74px);
+}
+
+/* كتب PDF المصوّرة: الصفحة نفسها هي الوحدة، فلا نستهلك عمودًا كاملًا للعنوان */
+.reader2.is-pdf-images .r2-paged .reader2-chapter-head {
+  display: none;
+}
+
+.reader2.is-pdf-images .r2-paged .pdf-page {
+  padding: 0;
+  margin: 0 auto;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+
+.reader2.is-pdf-images .r2-paged .pdf-page > img {
+  max-height: calc(var(--r2-page-h) - 14px);
+  border-radius: 3px;
+}
+
+.reader2.is-pdf-images .r2-paged .pdf-page figcaption {
+  display: none;
+}
+
+.r2-paged .reader2-chapter-body .pdf-page figcaption {
+  margin-top: 6px;
+}
+
+.r2-paged.is-entering .r2-paged-viewport {
+  animation: r2-page-in 0.34s var(--ease);
+}
+
+/* لمعة التقليب */
+.r2-turn {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(90deg, transparent 30%, color-mix(in srgb, var(--r2-page) 70%, transparent) 50%, transparent 70%);
+}
+
+.r2-turn.is-go {
+  animation: r2-turn-go 0.46s cubic-bezier(0.3, 0.7, 0.3, 1);
+}
+
+.r2-turn.is-back {
+  animation: r2-turn-back 0.46s cubic-bezier(0.3, 0.7, 0.3, 1);
+}
+
+/* ---------- وضع التركيز ---------- */
+.r2-focus {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background:
+    radial-gradient(820px 380px at 50% 8%, color-mix(in srgb, var(--r2-page) 70%, transparent), transparent 70%),
+    color-mix(in srgb, var(--r2-bg) 55%, var(--r2-page));
+  animation: r2-fade 0.24s var(--ease);
+}
+
+.r2-focus[hidden] {
+  display: none !important;
+}
+
+.r2-focus-stage {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-content: safe center;
+  padding: clamp(78px, 10vh, 112px) clamp(56px, 8vw, 104px) clamp(96px, 12vh, 132px);
+  scrollbar-width: thin;
+}
+
+.r2-focus-card {
+  position: relative;
+  width: min(calc(var(--r2-width) + 30px), 100%);
+  margin: 0 auto;
+  padding: clamp(22px, 3.4vh, 34px) clamp(20px, 3vw, 38px) clamp(26px, 4vh, 38px);
+  border: 1px solid color-mix(in srgb, var(--r2-line-c) 80%, transparent);
+  border-radius: 22px;
+  background: var(--r2-page);
+  box-shadow:
+    0 28px 70px -50px rgba(0, 0, 0, 0.6),
+    0 1px 0 color-mix(in srgb, var(--r2-line-c) 80%, transparent) inset;
+}
+
+.r2-focus-head {
+  margin-bottom: clamp(14px, 2.4vh, 22px);
+  padding-bottom: 12px;
+  border-bottom: 1px solid color-mix(in srgb, var(--r2-line-c) 70%, transparent);
+}
+
+.r2-focus-head h2 {
+  margin: 4px 0 0;
+  font-family: var(--font-display, var(--font-ar));
+  font-size: clamp(1.1rem, 0.95rem + 0.6vw, 1.5rem);
+  line-height: 1.4;
+  color: var(--r2-ink);
+}
+
+.r2-focus-stack {
+  font-size: calc(var(--r2-size) * 1.06);
+  line-height: var(--r2-line);
+  color: var(--r2-ink);
+}
+
+.r2-focus-stack .r2-focus-block {
+  display: none;
+}
+
+.r2-focus-stack .r2-focus-block.is-active {
+  display: block;
+}
+
+.r2-focus-stack .r2-focus-block.is-active > :first-child {
+  margin-top: 0;
+}
+
+.r2-focus-stack .r2-focus-block.is-active > :last-child {
+  margin-bottom: 0;
+}
+
+.r2-focus-stack .r2-focus-block.is-in {
+  animation: r2-focus-in 0.42s var(--ease) both;
+}
+
+.r2-focus-stack img {
+  max-height: calc(100vh - 340px);
+  max-height: calc(100dvh - 340px);
+  width: auto;
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+.r2-focus-stack .pdf-page > img {
+  width: auto;
+  max-width: 100%;
+}
+
+.r2-focus-count {
+  position: absolute;
+  inset-inline-end: clamp(18px, 3vw, 30px);
+  bottom: clamp(14px, 2.4vh, 22px);
+  color: var(--r2-muted);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+}
+
+.r2-focus-arrow {
+  position: absolute;
+  z-index: 4;
+  top: 50%;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  transform: translateY(-50%);
+  border: 1px solid color-mix(in srgb, var(--r2-line-c) 80%, transparent);
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--r2-page) 82%, transparent);
+  color: var(--r2-muted);
+  box-shadow: 0 10px 28px -20px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition: color 0.18s var(--ease), border-color 0.18s var(--ease), background 0.18s var(--ease);
+}
+
+.r2-focus-arrow svg {
+  width: 19px;
+  height: 19px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.r2-focus-arrow.is-prev {
+  inset-inline-start: clamp(10px, 3vw, 30px);
+}
+
+.r2-focus-arrow.is-next {
+  inset-inline-end: clamp(10px, 3vw, 30px);
+}
+
+.r2-focus-arrow:hover {
+  border-color: color-mix(in srgb, var(--r2-accent) 55%, transparent);
+  background: var(--r2-accent-soft);
+  color: var(--r2-accent);
+}
+
+.r2-focus-stack .is-pulse {
+  animation: r2-hit 1.4s ease-out;
+  border-radius: 6px;
+}
+
+/* ---------- بطاقات طرق القراءة في لوحة المظهر ---------- */
+.reader2-modes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.reader2-mode-card {
+  display: grid;
+  gap: 2px;
+  justify-items: start;
+  padding: 11px 12px 12px;
+  border: 1px solid color-mix(in srgb, var(--r2-line-c) 90%, var(--r2-muted));
+  border-radius: 14px;
+  background: color-mix(in srgb, var(--r2-line-c) 18%, transparent);
+  color: var(--r2-ink);
+  text-align: start;
+  cursor: pointer;
+  transition:
+    border-color 0.18s var(--ease),
+    background 0.18s var(--ease),
+    transform 0.18s var(--ease);
+}
+
+.reader2-mode-card i {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  margin-bottom: 6px;
+  border-radius: 10px;
+  background: color-mix(in srgb, var(--r2-line-c) 55%, transparent);
+  color: var(--r2-muted);
+}
+
+.reader2-mode-card i svg {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.reader2-mode-card strong {
+  font-size: 0.83rem;
+  font-weight: 900;
+}
+
+.reader2-mode-card small {
+  color: var(--r2-muted);
+  font-size: 0.68rem;
+  line-height: 1.5;
+}
+
+.reader2-mode-card:hover {
+  border-color: color-mix(in srgb, var(--r2-accent) 42%, transparent);
+  transform: translateY(-1px);
+}
+
+.reader2-mode-card.is-active {
+  border-color: color-mix(in srgb, var(--r2-accent) 55%, transparent);
+  background: var(--r2-accent-soft);
+}
+
+.reader2-mode-card.is-active i {
+  background: color-mix(in srgb, var(--r2-accent) 20%, transparent);
+  color: var(--r2-accent);
+}
+
+/* ---------- مؤشر التمرير التلقائي ---------- */
+.reader2.is-auto .reader2-top-progress i {
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--r2-accent) 55%, white),
+    var(--r2-accent),
+    color-mix(in srgb, var(--r2-accent) 55%, white)
+  );
+  background-size: 220% 100%;
+  animation: r2-auto-flow 2.4s linear infinite;
+}
+
+.reader2.is-auto .r2-mode-btn {
+  box-shadow: 0 0 0 2px var(--r2-accent-soft);
+}
+
+/* ---------- لوحة النهاية ---------- */
+.r2-end-sheet .reader2-sheet-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.r2-end-hero {
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  padding: 18px 12px 8px;
+  text-align: center;
+}
+
+.r2-end-hero > span {
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: var(--r2-accent-soft);
+  color: var(--r2-accent);
+  font-size: 1.5rem;
+  animation: r2-breathe 3s ease-in-out infinite;
+}
+
+.r2-end-hero strong {
+  font-family: var(--font-display, var(--font-ar));
+  font-size: 1.1rem;
+}
+
+.r2-end-hero p {
+  margin: 0;
+  max-width: 34ch;
+  color: var(--r2-muted);
+  font-size: 0.8rem;
+  line-height: 1.7;
+}
+
+.r2-end-sheet .reader2-end-actions {
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+@keyframes r2-page-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+@keyframes r2-focus-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.995);
+  }
+}
+
+@keyframes r2-turn-go {
+  0% {
+    opacity: 0;
+    transform: translateX(-14%);
+  }
+  35% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(16%);
+  }
+}
+
+@keyframes r2-turn-back {
+  0% {
+    opacity: 0;
+    transform: translateX(14%);
+  }
+  35% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-16%);
+  }
+}
+
+@keyframes r2-auto-flow {
+  to {
+    background-position: -220% 0;
+  }
+}
+
+@media (max-width: 760px) {
+  .r2-mode-btn {
+    width: 38px;
+    min-width: 38px;
+    padding-inline: 0;
+  }
+
+  .r2-mode-btn .r2-mode-label {
+    display: none;
+  }
+
+  .r2-paged-viewport {
+    --r2-pad: 17px;
+    padding: 78px var(--r2-pad) 88px;
+  }
+
+  .r2-paged-track {
+    column-gap: 28px;
+  }
+
+  .r2-focus-stage {
+    padding: 78px 12px 92px;
+    justify-content: flex-start;
+  }
+
+  .r2-focus-card {
+    padding: 18px 16px 24px;
+    border-radius: 18px;
+  }
+
+  .r2-focus-arrow {
+    width: 38px;
+    height: 38px;
+    top: auto;
+    bottom: 104px;
+    transform: none;
+  }
+
+  .r2-focus-arrow.is-prev {
+    inset-inline-start: 12px;
+  }
+
+  .r2-focus-arrow.is-next {
+    inset-inline-end: 12px;
+  }
+
+  .r2-focus-stack {
+    font-size: calc(var(--r2-size) * 1.02);
+  }
+
+  .r2-focus-stack img {
+    max-height: calc(100vh - 320px);
+    max-height: calc(100dvh - 320px);
+  }
+
+  .r2-focus-count {
+    position: static;
+    display: block;
+    margin-top: 14px;
+    text-align: end;
+  }
+}
+
+@media (max-width: 430px) {
+  .reader2-modes {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reader2 *,
+  .reader2 *::before,
+  .reader2 *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .r2-paged-track {
+    transition: none !important;
+  }
+}
+
+/* ظهور هادئ لمتن الفصل عند تحميله في التدفّق */
+.reader2-flow .reader2-chapter[data-loaded='true'] .reader2-chapter-body {
+  animation: r2-fade-in 0.42s var(--ease) both;
+}
+
+@keyframes r2-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reader2-flow .reader2-chapter[data-loaded='true'] .reader2-chapter-body {
+    animation: none;
+  }
+}

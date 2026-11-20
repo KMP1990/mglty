@@ -1,0 +1,1107 @@
+{
+  "version": "0.1.0",
+  "generatedAt": "2026-11-20T11:44:26.072Z",
+  "systems": [
+    {
+      "id": "deep-focus",
+      "name": "نظام التركيز العميق",
+      "tagline": "نافذتان عميقتان تهزمان يومًا كاملًا من التشتت",
+      "description": "نظام للعقل الذي يبدأ كثيرًا ولا ينهي: يفرّغ الذهن في الصباح، يحمي نافذتين للعمل العميق، ويغلق اليوم بمراجعة قصيرة حتى يبدأ الغد صافيًا.",
+      "icon": "brain",
+      "color": "lilac",
+      "level": "متقدم",
+      "durationDays": 21,
+      "tags": [
+        "تركيز",
+        "إنتاجية",
+        "عمل عميق"
+      ],
+      "bestFor": "الطلاب والمبدعون وأصحاب المشاريع الذين يشتتون بسهولة",
+      "principles": [
+        "قرار واحد قبل البدء يوفّر عشرين قرارًا أثناءه.",
+        "الإشعارات ليست خلفية — هي ضريبة على كل دقيقة.",
+        "المراجعة القصيرة قبل النوم تحمي صفاء صباح الغد."
+      ],
+      "stages": [
+        {
+          "id": "seed",
+          "name": "البذرة",
+          "days": "1-7",
+          "focus": "تثبيت نافذة واحدة وتفريغ الذهن كل صباح"
+        },
+        {
+          "id": "grow",
+          "name": "النمو",
+          "days": "8-14",
+          "focus": "نافذتان محميتان مع صيام إشعارات"
+        },
+        {
+          "id": "master",
+          "name": "الإتقان",
+          "days": "15-21",
+          "focus": "قياس جودة التركيز وتحسين بيئة العمل"
+        }
+      ],
+      "estimatedMinutes": 318,
+      "routines": [
+        {
+          "key": "mind-dump",
+          "title": "تفريغ الذهن",
+          "note": "اكتب كل ما يشغل بالك على ورقة واحدة، ثم اختر مهمة واحدة فقط لليوم.",
+          "icon": "pen",
+          "color": "lilac",
+          "time": "07:45",
+          "duration": 8,
+          "days": [],
+          "priority": "core",
+          "energy": "low",
+          "anchor": "قبل أول فنجان قهوة",
+          "steps": [
+            "اكتب ٥ أشياء تشغلك",
+            "ضع دائرة حول الأهم",
+            "اترك الباقي لوقت لاحق"
+          ],
+          "why": "الذهن الممتلئ يرفض البدء؛ التفريغ يفرّغ مساحة للقرار.",
+          "systemId": "deep-focus",
+          "systemName": "نظام التركيز العميق",
+          "systemKey": "mind-dump",
+          "source": "system"
+        },
+        {
+          "key": "focus-window-one",
+          "title": "نافذة التركيز الأولى",
+          "note": "جلسة واحدة بلا مقاطعة على أهم مهمة في اليوم.",
+          "icon": "brain",
+          "color": "lilac",
+          "time": "08:30",
+          "duration": 90,
+          "days": [],
+          "priority": "core",
+          "energy": "high",
+          "anchor": "بعد تفريغ الذهن مباشرة",
+          "steps": [
+            "أغلق كل التبويبات",
+            "اكتب هدف الجلسة بجملة",
+            "اعمل ٤٥ دقيقة ثم استرح ٥"
+          ],
+          "why": "أول ٩٠ دقيقة تحمل أعلى طاقة ذهنية في اليوم.",
+          "systemId": "deep-focus",
+          "systemName": "نظام التركيز العميق",
+          "systemKey": "focus-window-one",
+          "source": "system"
+        },
+        {
+          "key": "notification-fast",
+          "title": "صيام الإشعارات",
+          "note": "أوقف كل الإشعارات غير الضرورية طوال نافذة العمل.",
+          "icon": "moon",
+          "color": "sky",
+          "time": "09:00",
+          "duration": 120,
+          "days": [
+            "sun",
+            "mon",
+            "tue",
+            "wed",
+            "thu"
+          ],
+          "priority": "core",
+          "energy": "medium",
+          "anchor": "مع بداية ساعات العمل",
+          "steps": [
+            "شغّل وضع عدم الإزعاج",
+            "أخفِ تطبيقات التواصل",
+            "افحصها مرة واحدة بعد الجلسة"
+          ],
+          "why": "كل مقاطعة تعيد بناء التركيز من الصفر.",
+          "systemId": "deep-focus",
+          "systemName": "نظام التركيز العميق",
+          "systemKey": "notification-fast",
+          "source": "system"
+        },
+        {
+          "key": "movement-break",
+          "title": "استراحة حركة",
+          "note": "قف وامشِ قليلًا بين النافذتين بدل التمرير.",
+          "icon": "walk",
+          "color": "mint",
+          "time": "11:00",
+          "duration": 5,
+          "days": [],
+          "priority": "support",
+          "energy": "low",
+          "anchor": "بعد إغلاق النافذة الأولى",
+          "steps": [
+            "قف بعيدًا عن الشاشة",
+            "امشِ ٥ دقائق",
+            "اشرب ماء"
+          ],
+          "why": "الحركة القصيرة تنظّف الذهن وتعيد ضبط الانتباه.",
+          "systemId": "deep-focus",
+          "systemName": "نظام التركيز العميق",
+          "systemKey": "movement-break",
+          "source": "system"
+        },
+        {
+          "key": "focus-window-two",
+          "title": "نافذة التركيز الثانية",
+          "note": "جلسة أخف بعد الظهر لمهمة واحدة محددة.",
+          "icon": "brain",
+          "color": "lilac",
+          "time": "15:00",
+          "duration": 60,
+          "days": [
+            "sun",
+            "mon",
+            "tue",
+            "wed",
+            "thu"
+          ],
+          "priority": "support",
+          "energy": "medium",
+          "anchor": "بعد وجبة الغداء والاستراحة",
+          "steps": [
+            "اختر مهمة واحدة",
+            "أبعد الهاتف عن المكتب",
+            "اعمل ٢٥ دقيقة ثم استرح ٥"
+          ],
+          "why": "نافذة ثانية محمية تمنع اليوم من التحول إلى ردود فعل.",
+          "systemId": "deep-focus",
+          "systemName": "نظام التركيز العميق",
+          "systemKey": "focus-window-two",
+          "source": "system"
+        },
+        {
+          "key": "deep-read",
+          "title": "قراءة عميقة",
+          "note": "قراءة بلا هاتف — ٢٥ دقيقة فقط.",
+          "icon": "book",
+          "color": "honey",
+          "time": "20:30",
+          "duration": 25,
+          "days": [],
+          "priority": "support",
+          "energy": "low",
+          "anchor": "بعد العشاء",
+          "steps": [
+            "اختر فصلًا واحدًا",
+            "ضع الهاتف في غرفة أخرى",
+            "اكتب سطرًا واحدًا مما فهمت"
+          ],
+          "why": "القراءة العميقة تمرين مباشر على مقاومة التشتت.",
+          "systemId": "deep-focus",
+          "systemName": "نظام التركيز العميق",
+          "systemKey": "deep-read",
+          "source": "system"
+        },
+        {
+          "key": "day-close",
+          "title": "إغلاق اليوم بمراجعة",
+          "note": "ثلاثة أسئلة: ما أنجزت؟ ما تعطّل؟ ما أول خطوة غدًا؟",
+          "icon": "sparkles",
+          "color": "sand",
+          "time": "21:30",
+          "duration": 10,
+          "days": [],
+          "priority": "core",
+          "energy": "low",
+          "anchor": "قبل تنظيف مكتبك",
+          "steps": [
+            "اكتب إنجازًا واحدًا",
+            "اكتب عائقًا واحدًا",
+            "اكتب أول خطوة للغد"
+          ],
+          "why": "الإغلاق الواعي يمنع العقل من العمل طوال الليل.",
+          "systemId": "deep-focus",
+          "systemName": "نظام التركيز العميق",
+          "systemKey": "day-close",
+          "source": "system"
+        }
+      ],
+      "routineCount": 7,
+      "coreCount": 4
+    },
+    {
+      "id": "energy",
+      "name": "نظام الطاقة الحيوية",
+      "tagline": "جسدك أول تطبيق يعمل عليه يومك",
+      "description": "نظام يبني الطاقة من الأسفل: ماء وضوء في الصباح، حركة موزعة على اليوم، ووجبة واعية، ثم نوم يصلح كل شيء. لا يحتاج ناديًا ولا معدات.",
+      "icon": "dumbbell",
+      "color": "mint",
+      "level": "متوسط",
+      "durationDays": 30,
+      "tags": [
+        "صحة",
+        "طاقة",
+        "نوم",
+        "حركة"
+      ],
+      "bestFor": "من يشعر بخمول مستمر أو تقلّب في الطاقة بين الصباح والمساء",
+      "principles": [
+        "الماء والضوء أول قرارين في اليوم — قبل الهاتف.",
+        "الحركة القصيرة المتكررة أفضل من جلسة واحدة تُؤجَّل.",
+        "النوم ليس رفاهية، بل هو روتين الغد الأول."
+      ],
+      "stages": [
+        {
+          "id": "seed",
+          "name": "إعادة الترطيب",
+          "days": "1-10",
+          "focus": "ماء الصباح وضوء النهار وتمدد المساء"
+        },
+        {
+          "id": "grow",
+          "name": "بناء الحركة",
+          "days": "11-20",
+          "focus": "إضافة حركة يومية وقوة قصيرة"
+        },
+        {
+          "id": "master",
+          "name": "إيقاع ثابت",
+          "days": "21-30",
+          "focus": "تثبيت مواعيد النوم والطاقة"
+        }
+      ],
+      "estimatedMinutes": 97,
+      "routines": [
+        {
+          "key": "morning-water",
+          "title": "ماء الاستيقاظ",
+          "note": "كوب ماء كامل قبل أي شيء آخر.",
+          "icon": "water",
+          "color": "sky",
+          "time": "07:00",
+          "duration": 2,
+          "days": [],
+          "priority": "core",
+          "energy": "low",
+          "anchor": "بجانب السرير",
+          "steps": [
+            "ضع كوب الماء ليلًا",
+            "اشربه فور الاستيقاظ",
+            "لا تفتح الهاتف قبلها"
+          ],
+          "why": "الجفاف الخفيف يظهر كخمول وليس كعطش.",
+          "systemId": "energy",
+          "systemName": "نظام الطاقة الحيوية",
+          "systemKey": "morning-water",
+          "source": "system"
+        },
+        {
+          "key": "morning-light",
+          "title": "ضوء الصباح",
+          "note": "عشر دقائق خارج الغرفة أو أمام نافذة مفتوحة.",
+          "icon": "sunrise",
+          "color": "honey",
+          "time": "07:10",
+          "duration": 10,
+          "days": [],
+          "priority": "core",
+          "energy": "low",
+          "anchor": "بعد كوب الماء",
+          "steps": [
+            "افتح الستائر",
+            "اخرج إن أمكن",
+            "لا تنظر للشاشة"
+          ],
+          "why": "الضوء يضبط ساعة الجسم ويعيد إيقاع النوم.",
+          "systemId": "energy",
+          "systemName": "نظام الطاقة الحيوية",
+          "systemKey": "morning-light",
+          "source": "system"
+        },
+        {
+          "key": "mindful-meal",
+          "title": "وجبة واعية",
+          "note": "وجبة واحدة بلا شاشة، تمضغها ببطء.",
+          "icon": "coffee",
+          "color": "sand",
+          "time": "13:00",
+          "duration": 20,
+          "days": [],
+          "priority": "support",
+          "energy": "medium",
+          "anchor": "عند الغداء",
+          "steps": [
+            "بعد الهاتف عن الطاولة",
+            "كل ببطء",
+            "توقف قبل الامتلاء"
+          ],
+          "why": "الأكل الواعي يقلل خمول ما بعد الغداء.",
+          "systemId": "energy",
+          "systemName": "نظام الطاقة الحيوية",
+          "systemKey": "mindful-meal",
+          "source": "system"
+        },
+        {
+          "key": "afternoon-move",
+          "title": "حركة بعد الظهر",
+          "note": "مشي ٢٠ دقيقة أو صعود درج.",
+          "icon": "walk",
+          "color": "mint",
+          "time": "16:30",
+          "duration": 20,
+          "days": [],
+          "priority": "core",
+          "energy": "medium",
+          "anchor": "قبل أضعف ساعة في اليوم",
+          "steps": [
+            "اخرج ٢٠ دقيقة",
+            "تنفس بعمق",
+            "لا تجلس مباشرة بعدها"
+          ],
+          "why": "الحركة في هذا الوقت ترفع الطاقة المسائية بلا قهوة.",
+          "systemId": "energy",
+          "systemName": "نظام الطاقة الحيوية",
+          "systemKey": "afternoon-move",
+          "source": "system"
+        },
+        {
+          "key": "short-strength",
+          "title": "قوة قصيرة",
+          "note": "١٥ دقيقة تمارين وزن الجسم.",
+          "icon": "dumbbell",
+          "color": "mint",
+          "time": "18:00",
+          "duration": 15,
+          "days": [
+            "sun",
+            "tue",
+            "thu",
+            "sat"
+          ],
+          "priority": "support",
+          "energy": "high",
+          "anchor": "قبل الحمّام",
+          "steps": [
+            "سكوات ٥×١٠",
+            "ضغط ٥×٥",
+            "بلانك ٣×٣٠ ثانية"
+          ],
+          "why": "القوة القصيرة تحافظ على الكتلة العضلية مع التقدم في العمر.",
+          "systemId": "energy",
+          "systemName": "نظام الطاقة الحيوية",
+          "systemKey": "short-strength",
+          "source": "system"
+        },
+        {
+          "key": "evening-stretch",
+          "title": "تمدد المساء",
+          "note": "تمدد لطيف للأكتاف والظهر.",
+          "icon": "heart",
+          "color": "lilac",
+          "time": "22:00",
+          "duration": 10,
+          "days": [],
+          "priority": "core",
+          "energy": "low",
+          "anchor": "بعد تنظيف الأسنان",
+          "steps": [
+            "٢ دقائق رقبة",
+            "٣ دقائق كتفين",
+            "٣ دقائق ظهر",
+            "تنفس هادئ"
+          ],
+          "why": "التمدد يخفض توتر العضلات ويجهّز النوم.",
+          "systemId": "energy",
+          "systemName": "نظام الطاقة الحيوية",
+          "systemKey": "evening-stretch",
+          "source": "system"
+        },
+        {
+          "key": "screen-free-night",
+          "title": "نوم بلا شاشة",
+          "note": "٢٠ دقيقة قبل النوم بلا شاشات.",
+          "icon": "moon",
+          "color": "lilac",
+          "time": "22:45",
+          "duration": 20,
+          "days": [],
+          "priority": "support",
+          "energy": "low",
+          "anchor": "عند وضع الهاتف على الشاحن",
+          "steps": [
+            "ضع الهاتف خارج الغرفة",
+            "أطفئ الأنوار",
+            "اقرأ ورقيًا أو تنفس"
+          ],
+          "why": "الضوء الأزرق يؤخر الميلاتونين ويقصّر النوم العميق.",
+          "systemId": "energy",
+          "systemName": "نظام الطاقة الحيوية",
+          "systemKey": "screen-free-night",
+          "source": "system"
+        }
+      ],
+      "routineCount": 7,
+      "coreCount": 4
+    },
+    {
+      "id": "calm",
+      "name": "نظام الهدوء الذهني",
+      "tagline": "لا تحتاج يومًا مثاليًا، تحتاج دقيقتين تعود فيهما لنفسك",
+      "description": "نظام خفيف للأيام المزدحمة والذهن المتعب: تنفس قصير، تدوين صغير، مشي صامت، وإغلاق ليلي يفرّغ الرأس قبل النوم. كل روتين أقل من ١٥ دقيقة.",
+      "icon": "moon",
+      "color": "sky",
+      "level": "لطيف",
+      "durationDays": 14,
+      "tags": [
+        "هدوء",
+        "توتر",
+        "تدوين",
+        "نوم"
+      ],
+      "bestFor": "من يشعر بضغط مستمر أو تفكير مفرط أو صعوبة في إغلاق اليوم",
+      "principles": [
+        "لست مضطرًا لحل كل شيء اليوم؛ يكفي أن تهدأ دقيقتان.",
+        "الكتابة تُخرج الفكرة من الرأس فتفقد سلطتها.",
+        "الانتقال الواعي بين العمل والراحة روتين لا رفاهية."
+      ],
+      "stages": [
+        {
+          "id": "seed",
+          "name": "نفس واحد",
+          "days": "1-5",
+          "focus": "تنفس الصباح وتدوين ثلاث جمل"
+        },
+        {
+          "id": "grow",
+          "name": "مساحة داخلية",
+          "days": "6-10",
+          "focus": "توقف الوعي ومشي صامت"
+        },
+        {
+          "id": "master",
+          "name": "إغلاق هادئ",
+          "days": "11-14",
+          "focus": "امتنان وإغلاق يومي بلا شاشة"
+        }
+      ],
+      "estimatedMinutes": 71,
+      "routines": [
+        {
+          "key": "breath-46",
+          "title": "تنفس ٤-٦",
+          "note": "شهيق ٤ ثوان، زفير ٦ ثوان، خمس مرات.",
+          "icon": "heart",
+          "color": "sky",
+          "time": "07:30",
+          "duration": 3,
+          "days": [],
+          "priority": "core",
+          "energy": "low",
+          "anchor": "قبل مغادرة غرفتك",
+          "steps": [
+            "اجلس مستقيمًا",
+            "شهيق ٤",
+            "زفير ٦",
+            "كرر ٥ مرات"
+          ],
+          "why": "الزفير الأطول يفعّل الجهاز العصبي الهادئ فورًا.",
+          "systemId": "calm",
+          "systemName": "نظام الهدوء الذهني",
+          "systemKey": "breath-46",
+          "source": "system"
+        },
+        {
+          "key": "morning-pages",
+          "title": "تدوين صباحي",
+          "note": "ثلاث جمل فقط: كيف أشعر؟ ما يشغلني؟ ما أريد اليوم؟",
+          "icon": "pen",
+          "color": "sand",
+          "time": "07:45",
+          "duration": 5,
+          "days": [],
+          "priority": "core",
+          "energy": "low",
+          "anchor": "مع القهوة",
+          "steps": [
+            "اكتب ٣ أسطر",
+            "لا تصحح",
+            "أغلق الدفتر"
+          ],
+          "why": "التفريغ الكتابي يقلل التفكير المتكرر قبل أن يبدأ.",
+          "systemId": "calm",
+          "systemName": "نظام الهدوء الذهني",
+          "systemKey": "morning-pages",
+          "source": "system"
+        },
+        {
+          "key": "mindful-pause",
+          "title": "توقف وعي",
+          "note": "دقيقة واحدة: توقف، تنفس، لاحظت ماذا؟",
+          "icon": "leaf",
+          "color": "mint",
+          "time": "13:30",
+          "duration": 3,
+          "days": [],
+          "priority": "support",
+          "energy": "low",
+          "anchor": "بعد الغداء",
+          "steps": [
+            "أوقف كل شيء",
+            "٣ أنفاس",
+            "لاحظ ٣ أشياء حولك"
+          ],
+          "why": "التوقف القصير يقطع سلسلة التوتر قبل أن تتراكم.",
+          "systemId": "calm",
+          "systemName": "نظام الهدوء الذهني",
+          "systemKey": "mindful-pause",
+          "source": "system"
+        },
+        {
+          "key": "silent-walk",
+          "title": "مشي صامت",
+          "note": "مشي ١٥ دقيقة بلا هاتف ولا بودكاست.",
+          "icon": "walk",
+          "color": "mint",
+          "time": "18:30",
+          "duration": 15,
+          "days": [],
+          "priority": "core",
+          "energy": "medium",
+          "anchor": "قبل العشاء",
+          "steps": [
+            "اترك الهاتف",
+            "امشِ بلا هدف",
+            "تنفس من الأنف"
+          ],
+          "why": "المشي الصامت يخفض الضغط ويعيد ترتيب الأفكار.",
+          "systemId": "calm",
+          "systemName": "نظام الهدوء الذهني",
+          "systemKey": "silent-walk",
+          "source": "system"
+        },
+        {
+          "key": "gratitude-three",
+          "title": "امتنان لثلاثة أشياء",
+          "note": "ثلاثة أشياء صغيرة حدثت اليوم وتستحق الشكر.",
+          "icon": "sparkles",
+          "color": "honey",
+          "time": "21:00",
+          "duration": 5,
+          "days": [],
+          "priority": "support",
+          "energy": "low",
+          "anchor": "بعد إطفاء الشاشات",
+          "steps": [
+            "اكتب ٣ أشياء",
+            "اذكر شخصًا واحدًا",
+            "أرسل له شكرًا إن أمكن"
+          ],
+          "why": "الامتنان يدرّب العقل على رؤية ما يعمل لا ما ينقص.",
+          "systemId": "calm",
+          "systemName": "نظام الهدوء الذهني",
+          "systemKey": "gratitude-three",
+          "source": "system"
+        },
+        {
+          "key": "day-close-calm",
+          "title": "إغلاق اليوم",
+          "note": "ما انتهى؟ ما سأنساه الليلة؟ ما أول خطوة غدًا؟",
+          "icon": "moon",
+          "color": "lilac",
+          "time": "22:00",
+          "duration": 10,
+          "days": [],
+          "priority": "core",
+          "energy": "low",
+          "anchor": "قبل الاستحمام",
+          "steps": [
+            "اكتب ما انتهى",
+            "اكتب ما تؤجله",
+            "اكتب خطوة الغد"
+          ],
+          "why": "الإغلاق يمنح العقل إذنًا بالتوقف عن العمل.",
+          "systemId": "calm",
+          "systemName": "نظام الهدوء الذهني",
+          "systemKey": "day-close-calm",
+          "source": "system"
+        },
+        {
+          "key": "screen-free-calm",
+          "title": "ليل بلا شاشة",
+          "note": "آخر نصف ساعة قبل النوم بلا شاشات.",
+          "icon": "moon",
+          "color": "lilac",
+          "time": "22:30",
+          "duration": 30,
+          "days": [],
+          "priority": "core",
+          "energy": "low",
+          "anchor": "عند وضع الهاتف على الشاحن",
+          "steps": [
+            "أطفئ الشاشات",
+            "أضئ نورًا خافتًا",
+            "اقرأ أو تنفس"
+          ],
+          "why": "الشاشة قبل النوم ترفع التنبّه وتؤخر النعاس.",
+          "systemId": "calm",
+          "systemName": "نظام الهدوء الذهني",
+          "systemKey": "screen-free-calm",
+          "source": "system"
+        }
+      ],
+      "routineCount": 7,
+      "coreCount": 5
+    },
+    {
+      "id": "builder",
+      "name": "نظام البناء والتعلم",
+      "tagline": "القليل اليومي يبني ما تعجز عنه الجلسات الكبيرة",
+      "description": "نظام يحوّل الطموح إلى خطوات قابلة للقياس: تعلّم قصير، استرجاع نشط، كتابة، قراءة، ومراجعة أسبوعية. مبني على التكرار المتباعد لا على الحماس المؤقت.",
+      "icon": "book",
+      "color": "honey",
+      "level": "متقدم",
+      "durationDays": 30,
+      "tags": [
+        "تعلّم",
+        "قراءة",
+        "كتابة",
+        "مشاريع"
+      ],
+      "bestFor": "من يريد إتقان مهارة أو إنهاء مشروع دون الاعتماد على الاندفاع",
+      "principles": [
+        "الاسترجاع النشط يثبّت المعلومة أكثر من إعادة القراءة.",
+        "مئة كلمة يوميًا تصبح كتابًا في سنة.",
+        "المراجعة الأسبوعية تكشف ما يعمل قبل أن يضيع الشهر."
+      ],
+      "stages": [
+        {
+          "id": "seed",
+          "name": "بداية صغيرة",
+          "days": "1-7",
+          "focus": "تعلّم ٢٥ دقيقة وقراءة ١٠ صفحات"
+        },
+        {
+          "id": "grow",
+          "name": "بناء العضلة",
+          "days": "8-21",
+          "focus": "استرجاع نشط وكتابة يومية"
+        },
+        {
+          "id": "master",
+          "name": "مشروع حقيقي",
+          "days": "22-30",
+          "focus": "مشروع صغير ومراجعة أسبوعية"
+        }
+      ],
+      "estimatedMinutes": 135,
+      "routines": [
+        {
+          "key": "plan-day",
+          "title": "خطة اليوم",
+          "note": "ثلاث مهام فقط: مهمة مهمة، مهمة سريعة، ومهمة تعلّم.",
+          "icon": "sparkles",
+          "color": "sand",
+          "time": "07:00",
+          "duration": 5,
+          "days": [],
+          "priority": "core",
+          "energy": "low",
+          "anchor": "قبل أول مهمة",
+          "steps": [
+            "اكتب ٣ مهام",
+            "حدد الأهم",
+            "ضع وقتًا تقريبيًا لكل واحدة"
+          ],
+          "why": "قائمة قصيرة تُنجَز أفضل من قائمة طويلة تُجمّد.",
+          "systemId": "builder",
+          "systemName": "نظام البناء والتعلم",
+          "systemKey": "plan-day",
+          "source": "system"
+        },
+        {
+          "key": "learn-block",
+          "title": "جلسة تعلّم",
+          "note": "٢٥ دقيقة على مهارة واحدة فقط.",
+          "icon": "brain",
+          "color": "honey",
+          "time": "08:00",
+          "duration": 25,
+          "days": [],
+          "priority": "core",
+          "energy": "high",
+          "anchor": "بعد خطة اليوم",
+          "steps": [
+            "اختر مصدرًا واحدًا",
+            "أغلق كل شيء آخر",
+            "٢٥ دقيقة ثم استراحة"
+          ],
+          "why": "جلسة قصيرة مركزة تتغلب على ساعتين مشتتتين.",
+          "systemId": "builder",
+          "systemName": "نظام البناء والتعلم",
+          "systemKey": "learn-block",
+          "source": "system"
+        },
+        {
+          "key": "active-recall",
+          "title": "استرجاع نشط",
+          "note": "أغلق المصدر واكتب ما تذكره من غير النظر.",
+          "icon": "pen",
+          "color": "mint",
+          "time": "12:30",
+          "duration": 10,
+          "days": [
+            "sun",
+            "mon",
+            "tue",
+            "wed",
+            "thu"
+          ],
+          "priority": "support",
+          "energy": "medium",
+          "anchor": "بعد الغداء",
+          "steps": [
+            "أغلق الكتاب",
+            "اكتب ما تتذكره",
+            "افتح وقارن"
+          ],
+          "why": "محاولة التذكر هي ما يبني الذاكرة لا إعادة القراءة.",
+          "systemId": "builder",
+          "systemName": "نظام البناء والتعلم",
+          "systemKey": "active-recall",
+          "source": "system"
+        },
+        {
+          "key": "small-project",
+          "title": "مشروع صغير",
+          "note": "٣٠ دقيقة على مشروعك الشخصي أو المهني.",
+          "icon": "leaf",
+          "color": "mint",
+          "time": "16:00",
+          "duration": 30,
+          "days": [
+            "sun",
+            "mon",
+            "tue",
+            "wed",
+            "thu"
+          ],
+          "priority": "core",
+          "energy": "high",
+          "anchor": "قبل المغادرة أو قبل العشاء",
+          "steps": [
+            "حدد مخرجًا صغيرًا",
+            "اعمل ٣٠ دقيقة",
+            "سجّل ما أنجزت"
+          ],
+          "why": "المشروع يتقدم بالمخرجات الصغيرة المتكررة.",
+          "systemId": "builder",
+          "systemName": "نظام البناء والتعلم",
+          "systemKey": "small-project",
+          "source": "system"
+        },
+        {
+          "key": "write-100",
+          "title": "كتابة ١٠٠ كلمة",
+          "note": "فقرة واحدة عن أي فكرة تعلمتها اليوم.",
+          "icon": "pen",
+          "color": "rose",
+          "time": "20:00",
+          "duration": 20,
+          "days": [],
+          "priority": "support",
+          "energy": "low",
+          "anchor": "بعد العشاء",
+          "steps": [
+            "اختر فكرة واحدة",
+            "اكتب ١٠٠ كلمة",
+            "لا تعدّل الآن"
+          ],
+          "why": "الكتابة تحوّل المعرفة السلبية إلى فهم شخصي.",
+          "systemId": "builder",
+          "systemName": "نظام البناء والتعلم",
+          "systemKey": "write-100",
+          "source": "system"
+        },
+        {
+          "key": "read-ten",
+          "title": "قراءة ١٠ صفحات",
+          "note": "كتاب واحد حتى النهاية، لا خمسة في وقت واحد.",
+          "icon": "book",
+          "color": "honey",
+          "time": "21:00",
+          "duration": 15,
+          "days": [],
+          "priority": "core",
+          "energy": "low",
+          "anchor": "بعد ترتيب السرير",
+          "steps": [
+            "أحضر الكتاب",
+            "لا هاتف",
+            "علّم سطرًا واحدًا"
+          ],
+          "why": "القراءة اليومية الصغيرة تتفوق على القراءة المتقطعة الكبيرة.",
+          "systemId": "builder",
+          "systemName": "نظام البناء والتعلم",
+          "systemKey": "read-ten",
+          "source": "system"
+        },
+        {
+          "key": "weekly-review",
+          "title": "مراجعة أسبوعية",
+          "note": "ثلاثة أسئلة: ما نجح؟ ما تعطّل؟ ما تعديل الأسبوع القادم؟",
+          "icon": "sparkles",
+          "color": "lilac",
+          "time": "18:00",
+          "duration": 30,
+          "days": [
+            "fri"
+          ],
+          "priority": "core",
+          "energy": "medium",
+          "anchor": "مساء الجمعة",
+          "steps": [
+            "راجع إنجاز الأسبوع",
+            "اختر تعديلًا واحدًا",
+            "اكتب خطة الأسبوع القادم"
+          ],
+          "why": "المراجعة تحوّل التجربة إلى نظام يتطور.",
+          "systemId": "builder",
+          "systemName": "نظام البناء والتعلم",
+          "systemKey": "weekly-review",
+          "source": "system"
+        }
+      ],
+      "routineCount": 7,
+      "coreCount": 5
+    },
+    {
+      "id": "balance",
+      "name": "نظام التوازن الشامل",
+      "tagline": "لا تُحسّن جانبًا واحدًا على حساب حياتك كلها",
+      "description": "نظام يجمع الجسد والذهن والعمل والعلاقات في إيقاع واحد: أولويات واضحة، حركة، تواصل إنساني، تدوين، ونوم مبكر. للمرحلة التي تشعر فيها أن النجاح في جانب يعني خسارة جانب آخر.",
+      "icon": "heart",
+      "color": "rose",
+      "level": "شامل",
+      "durationDays": 28,
+      "tags": [
+        "توازن",
+        "علاقات",
+        "رفاهية",
+        "استمرارية"
+      ],
+      "bestFor": "من يعمل كثيرًا ويشعر أن بقية حياته تتأخر",
+      "principles": [
+        "الالتزام المستدام أهم من الالتزام المثالي.",
+        "علاقة واحدة تهتم بها اليوم تحمي أسبوعك كله.",
+        "الراحة المقصودة جزء من الخطة لا استثناء منها."
+      ],
+      "stages": [
+        {
+          "id": "seed",
+          "name": "أساس يومي",
+          "days": "1-7",
+          "focus": "ماء وتنفس + ثلاث أولويات"
+        },
+        {
+          "id": "grow",
+          "name": "الجوانب الأربعة",
+          "days": "8-18",
+          "focus": "حركة وتواصل إنساني وتدوين"
+        },
+        {
+          "id": "master",
+          "name": "استمرارية",
+          "days": "19-28",
+          "focus": "مراجعة مالية وأسبوعية وراحة مقصودة"
+        }
+      ],
+      "estimatedMinutes": 86,
+      "routines": [
+        {
+          "key": "water-breath",
+          "title": "ماء وتنفس",
+          "note": "كوب ماء وخمس أنفاس هادئة قبل الهاتف.",
+          "icon": "water",
+          "color": "sky",
+          "time": "07:00",
+          "duration": 5,
+          "days": [],
+          "priority": "core",
+          "energy": "low",
+          "anchor": "بجانب السرير",
+          "steps": [
+            "اشرب ماء",
+            "افتح نافذة",
+            "٥ أنفاس بطيئة"
+          ],
+          "why": "بداية الجسد والذهن معًا أفضل من بداية واحدة منهما.",
+          "systemId": "balance",
+          "systemName": "نظام التوازن الشامل",
+          "systemKey": "water-breath",
+          "source": "system"
+        },
+        {
+          "key": "three-priorities",
+          "title": "ثلاث أولويات",
+          "note": "مهمة للعمل، مهمة للشخص، ومهمة لشخص تحبه.",
+          "icon": "sparkles",
+          "color": "rose",
+          "time": "07:30",
+          "duration": 8,
+          "days": [],
+          "priority": "core",
+          "energy": "low",
+          "anchor": "قبل فتح البريد",
+          "steps": [
+            "اكتب أولوية عمل",
+            "اكتب أولوية شخصية",
+            "اكتب تواصلًا مهمًا"
+          ],
+          "why": "التوازن يبدأ بقرار واعٍ لا بالصدفة.",
+          "systemId": "balance",
+          "systemName": "نظام التوازن الشامل",
+          "systemKey": "three-priorities",
+          "source": "system"
+        },
+        {
+          "key": "daily-move",
+          "title": "حركة يومية",
+          "note": "٢٠ دقيقة مشي أو تمرين خفيف.",
+          "icon": "walk",
+          "color": "mint",
+          "time": "17:30",
+          "duration": 20,
+          "days": [],
+          "priority": "core",
+          "energy": "medium",
+          "anchor": "بعد إغلاق العمل",
+          "steps": [
+            "اخرج من المكتب",
+            "تحرك ٢٠ دقيقة",
+            "لا تراجع العمل بعدها"
+          ],
+          "why": "الحركة تفصل يوم العمل عن المساء.",
+          "systemId": "balance",
+          "systemName": "نظام التوازن الشامل",
+          "systemKey": "daily-move",
+          "source": "system"
+        },
+        {
+          "key": "human-connection",
+          "title": "تواصل إنساني",
+          "note": "اتصل بشخص تحبه أو اجلس معه بلا شاشة.",
+          "icon": "heart",
+          "color": "rose",
+          "time": "19:00",
+          "duration": 15,
+          "days": [],
+          "priority": "core",
+          "energy": "low",
+          "anchor": "بعد العشاء",
+          "steps": [
+            "اختر شخصًا واحدًا",
+            "اسأله سؤالًا حقيقيًا",
+            "استمع بلا مقاطعة"
+          ],
+          "why": "العلاقات هي أطول استثمار في حياتك.",
+          "systemId": "balance",
+          "systemName": "نظام التوازن الشامل",
+          "systemKey": "human-connection",
+          "source": "system"
+        },
+        {
+          "key": "money-check",
+          "title": "مراجعة المال",
+          "note": "دقيقتان: ماذا صرفت اليوم؟ هل يخدم خطتك؟",
+          "icon": "coffee",
+          "color": "sand",
+          "time": "20:00",
+          "duration": 5,
+          "days": [
+            "sun",
+            "wed"
+          ],
+          "priority": "support",
+          "energy": "low",
+          "anchor": "بعد إغلاق اليوم",
+          "steps": [
+            "افتح تطبيق البنك",
+            "سجّل المصروف",
+            "اسأل: هل كان ضروريًا؟"
+          ],
+          "why": "الوعي المالي اليومي يمنع مفاجآت نهاية الشهر.",
+          "systemId": "balance",
+          "systemName": "نظام التوازن الشامل",
+          "systemKey": "money-check",
+          "source": "system"
+        },
+        {
+          "key": "evening-journal",
+          "title": "تدوين المساء",
+          "note": "جملة عن اليوم، وجملة عن غدٍ أفضل.",
+          "icon": "pen",
+          "color": "lilac",
+          "time": "21:30",
+          "duration": 8,
+          "days": [],
+          "priority": "support",
+          "energy": "low",
+          "anchor": "بعد إطفاء التلفاز",
+          "steps": [
+            "اكتب أفضل لحظة",
+            "اكتب ما تريد تحسينه",
+            "اغلق الدفتر"
+          ],
+          "why": "التدوين يحوّل الأيام المتشابهة إلى تجربة مفهومة.",
+          "systemId": "balance",
+          "systemName": "نظام التوازن الشامل",
+          "systemKey": "evening-journal",
+          "source": "system"
+        },
+        {
+          "key": "early-sleep",
+          "title": "نوم مبكر",
+          "note": "استعد للنوم قبل الساعة المحددة بنصف ساعة.",
+          "icon": "moon",
+          "color": "lilac",
+          "time": "22:45",
+          "duration": 15,
+          "days": [],
+          "priority": "core",
+          "energy": "low",
+          "anchor": "عند إطفاء أضواء المنزل",
+          "steps": [
+            "أطفئ الشاشات",
+            "نظّف أسنانك",
+            "اذهب للسرير"
+          ],
+          "why": "النوم المبكر يصلح ما لا تصلحه القهوة.",
+          "systemId": "balance",
+          "systemName": "نظام التوازن الشامل",
+          "systemKey": "early-sleep",
+          "source": "system"
+        },
+        {
+          "key": "intentional-rest",
+          "title": "راحة مقصودة",
+          "note": "١٠ دقائق لا تفعل فيها شيئًا بلا شاشة.",
+          "icon": "leaf",
+          "color": "mint",
+          "time": "12:30",
+          "duration": 10,
+          "days": [
+            "fri",
+            "sat"
+          ],
+          "priority": "bonus",
+          "energy": "low",
+          "anchor": "في نهاية الأسبوع",
+          "steps": [
+            "اجلس بلا هدف",
+            "اشرب شيئًا دافئًا",
+            "لا تفتح الهاتف"
+          ],
+          "why": "الراحة غير المنتجة ظاهريًا هي التي تعيد شحن النظام.",
+          "systemId": "balance",
+          "systemName": "نظام التوازن الشامل",
+          "systemKey": "intentional-rest",
+          "source": "system"
+        }
+      ],
+      "routineCount": 8,
+      "coreCount": 5
+    }
+  ]
+}

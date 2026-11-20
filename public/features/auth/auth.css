@@ -1,0 +1,333 @@
+/* ==========================================================
+   صفحة الدخول / إنشاء الحساب — خِطاطة واحدة تحمل الاثنين
+   ========================================================== */
+.auth-shell {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  min-height: calc(100dvh - var(--header-h));
+}
+
+@media (max-width: 900px) {
+  .auth-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-aside {
+    display: none;
+  }
+}
+
+/* ---------- الجانب التعريفي ---------- */
+.auth-aside {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(24px, 4vw, 64px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-5);
+  background: radial-gradient(900px 500px at 110% -10%, rgba(219, 39, 119, 0.22), transparent 60%),
+    radial-gradient(700px 420px at -10% 110%, rgba(45, 212, 191, 0.22), transparent 60%);
+  border-inline-start: 1px solid var(--surface-border);
+}
+
+.auth-aside::before,
+.auth-aside::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(2px);
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.auth-aside::before {
+  width: 340px;
+  height: 340px;
+  inset-block-start: 8%;
+  inset-inline-start: -120px;
+  background: radial-gradient(circle, rgba(244, 114, 182, 0.35), transparent 65%);
+}
+
+.auth-aside::after {
+  width: 260px;
+  height: 260px;
+  inset-block-end: -60px;
+  inset-inline-end: -40px;
+  background: radial-gradient(circle, rgba(45, 212, 191, 0.3), transparent 65%);
+}
+
+.auth-aside h2 {
+  font-size: clamp(1.6rem, 1.2rem + 1.6vw, 2.3rem);
+  max-width: 20ch;
+  margin: 0;
+}
+
+.auth-aside .lead {
+  max-width: 42ch;
+  font-size: 1.02rem;
+}
+
+.auth-points {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: var(--space-3);
+}
+
+.auth-points li {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.96rem;
+}
+
+.auth-points .pt-ico {
+  flex: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: var(--bg-elevated);
+  border: 1px solid var(--surface-border);
+  box-shadow: var(--shadow-sm);
+}
+
+.auth-points small {
+  display: block;
+  font-weight: 500;
+  color: var(--text-muted);
+  font-size: 0.84rem;
+}
+
+/* ---------- الجانب النموذجي ---------- */
+.auth-main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(20px, 4vw, 56px) var(--space-4);
+}
+
+.auth-card {
+  width: min(460px, 100%);
+  padding: clamp(22px, 3vw, 36px);
+  display: grid;
+  gap: var(--space-2);
+  animation: auth-in 0.45s var(--ease);
+}
+
+@keyframes auth-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+}
+
+.auth-card h1 {
+  margin-bottom: 4px;
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 1.95rem);
+}
+
+.auth-card .sub {
+  margin: 0 0 var(--space-4);
+  color: var(--text-soft);
+  font-size: 0.95rem;
+}
+
+.auth-card form {
+  display: grid;
+}
+
+.auth-card .field {
+  margin-bottom: var(--space-3);
+}
+
+.auth-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-block: 2px var(--space-4);
+  flex-wrap: wrap;
+}
+
+.check {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: var(--text-soft);
+  cursor: pointer;
+  user-select: none;
+}
+
+.check input {
+  accent-color: var(--brand-500);
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.link-muted {
+  font-size: 0.88rem;
+  color: var(--text-soft);
+}
+
+.link-muted:hover {
+  color: var(--brand-600);
+}
+
+/* ---------- مقياس قوة كلمة المرور ---------- */
+.strength {
+  display: grid;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+.strength-bars {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 5px;
+}
+
+.strength-bars span {
+  height: 6px;
+  border-radius: 99px;
+  background: var(--surface-border);
+  transition: background var(--dur) var(--ease);
+}
+
+.strength[data-score='1'] .strength-bars span:nth-child(-n + 1) {
+  background: var(--danger);
+}
+
+.strength[data-score='2'] .strength-bars span:nth-child(-n + 2) {
+  background: var(--warning);
+}
+
+.strength[data-score='3'] .strength-bars span:nth-child(-n + 3) {
+  background: #65a30d;
+}
+
+.strength[data-score='4'] .strength-bars span:nth-child(-n + 4) {
+  background: var(--success);
+}
+
+.strength-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.strength-row strong {
+  color: var(--text-soft);
+}
+
+.pw-rules {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.pw-rules li {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.pw-rules li::before {
+  content: '○';
+  font-size: 0.7rem;
+}
+
+.pw-rules li[data-ok='true'] {
+  color: var(--success);
+}
+
+.pw-rules li[data-ok='true']::before {
+  content: '●';
+}
+
+/* ---------- تنبيه عام ---------- */
+.form-alert {
+  display: none;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: var(--space-4);
+  border: 1px solid transparent;
+}
+
+.form-alert[data-show='true'] {
+  display: flex;
+  animation: auth-in 0.25s var(--ease);
+}
+
+.form-alert[data-kind='error'] {
+  background: var(--danger-soft);
+  color: var(--danger);
+  border-color: color-mix(in srgb, var(--danger) 30%, transparent);
+}
+
+.form-alert[data-kind='success'] {
+  background: var(--success-soft);
+  color: var(--success);
+  border-color: color-mix(in srgb, var(--success) 30%, transparent);
+}
+
+.form-alert[data-kind='info'] {
+  background: var(--info-soft);
+  color: var(--info);
+  border-color: color-mix(in srgb, var(--info) 30%, transparent);
+}
+
+.auth-switch {
+  text-align: center;
+  font-size: 0.92rem;
+  color: var(--text-soft);
+  margin-top: var(--space-4);
+}
+
+.auth-switch a {
+  font-weight: 800;
+}
+
+.auth-foot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px dashed var(--surface-border);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* ---------- إظهار/إخفاء كلمة المرور ---------- */
+.pw-toggle svg {
+  width: 20px;
+  height: 20px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .auth-aside {
+    background: radial-gradient(900px 500px at 110% -10%, rgba(219, 39, 119, 0.22), transparent 60%),
+      radial-gradient(700px 420px at -10% 110%, rgba(45, 212, 191, 0.16), transparent 60%);
+  }
+}

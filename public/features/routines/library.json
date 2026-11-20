@@ -1,0 +1,653 @@
+{
+  "version": "0.1.0",
+  "generatedAt": "2026-11-20T11:44:26.073Z",
+  "name": "مكتبة الروتينات الجاهزة",
+  "categories": [
+    {
+      "id": "body",
+      "name": "الجسد",
+      "emoji": "🌿",
+      "color": "mint",
+      "description": "حركة وماء ونوم وطاقة"
+    },
+    {
+      "id": "mind",
+      "name": "الذهن",
+      "emoji": "🧠",
+      "color": "lilac",
+      "description": "هدوء وتدوين وقراءة وتنفس"
+    },
+    {
+      "id": "work",
+      "name": "العمل والتعلّم",
+      "emoji": "🎯",
+      "color": "honey",
+      "description": "تخطيط وتركيز ومهارة"
+    },
+    {
+      "id": "home",
+      "name": "البيت",
+      "emoji": "🏠",
+      "color": "sand",
+      "description": "ترتيب وطهي وعناية"
+    },
+    {
+      "id": "people",
+      "name": "العلاقات",
+      "emoji": "💗",
+      "color": "rose",
+      "description": "تواصل إنساني صغير"
+    },
+    {
+      "id": "money",
+      "name": "المال",
+      "emoji": "🪙",
+      "color": "honey",
+      "description": "وعي مالي بلا تعقيد"
+    },
+    {
+      "id": "spirit",
+      "name": "الروح",
+      "emoji": "✨",
+      "color": "sky",
+      "description": "ذكر وامتنان وسكينة"
+    }
+  ],
+  "routines": [
+    {
+      "id": "body-water",
+      "category": "body",
+      "title": "كوب ماء بعد الاستيقاظ",
+      "note": "قبل الهاتف وقبل القهوة.",
+      "icon": "water",
+      "color": "sky",
+      "time": "07:00",
+      "duration": 2,
+      "days": [],
+      "priority": "core",
+      "energy": "low",
+      "anchor": "بجانب السرير",
+      "steps": [
+        "ضع الكوب ليلًا",
+        "اشربه فورًا",
+        "افتح النافذة"
+      ],
+      "why": "أسهل روتين لبدء اليوم وأقلّه مقاومة."
+    },
+    {
+      "id": "body-walk",
+      "category": "body",
+      "title": "مشي ١٥ دقيقة",
+      "note": "بلا هاتف إن أمكن.",
+      "icon": "walk",
+      "color": "mint",
+      "time": "17:30",
+      "duration": 15,
+      "days": [],
+      "priority": "core",
+      "energy": "medium",
+      "anchor": "بعد إغلاق العمل",
+      "steps": [
+        "اخرج",
+        "تنفس بعمق",
+        "امشِ بلا هدف"
+      ],
+      "why": "الحركة القصيرة تعيد ضبط الطاقة قبل المساء."
+    },
+    {
+      "id": "body-stretch",
+      "category": "body",
+      "title": "تمدد ٥ دقائق",
+      "note": "رقبة وكتفين وظهر.",
+      "icon": "heart",
+      "color": "lilac",
+      "time": "22:00",
+      "duration": 5,
+      "days": [],
+      "priority": "support",
+      "energy": "low",
+      "anchor": "قبل النوم",
+      "steps": [
+        "رقبة ١ دقيقة",
+        "كتفين ٢ دقيقة",
+        "ظهر ٢ دقيقة"
+      ],
+      "why": "يخفف توتر العضلات ويحسّن النوم."
+    },
+    {
+      "id": "body-sleep",
+      "category": "body",
+      "title": "نوم مبكر",
+      "note": "نصف ساعة قبل موعدك المعتاد.",
+      "icon": "moon",
+      "color": "lilac",
+      "time": "22:45",
+      "duration": 15,
+      "days": [],
+      "priority": "core",
+      "energy": "low",
+      "anchor": "عند إطفاء أضواء المنزل",
+      "steps": [
+        "أطفئ الشاشات",
+        "نظّف أسنانك",
+        "اذهب للسرير"
+      ],
+      "why": "النوم المبكر يصلح ما لا تصلحه القهوة."
+    },
+    {
+      "id": "body-sun",
+      "category": "body",
+      "title": "ضوء الصباح",
+      "note": "عشر دقائق خارج الغرفة.",
+      "icon": "sunrise",
+      "color": "honey",
+      "time": "07:15",
+      "duration": 10,
+      "days": [],
+      "priority": "support",
+      "energy": "low",
+      "anchor": "بعد كوب الماء",
+      "steps": [
+        "افتح الستائر",
+        "اخرج إن أمكن",
+        "لا شاشة"
+      ],
+      "why": "الضوء يضبط ساعة الجسم."
+    },
+    {
+      "id": "mind-breath",
+      "category": "mind",
+      "title": "تنفس ٤-٦",
+      "note": "شهيق ٤ ثوان وزفير ٦.",
+      "icon": "heart",
+      "color": "sky",
+      "time": "07:30",
+      "duration": 3,
+      "days": [],
+      "priority": "core",
+      "energy": "low",
+      "anchor": "قبل مغادرة الغرفة",
+      "steps": [
+        "اجلس مستقيمًا",
+        "٥ أنفاس",
+        "لاحظ جسدك"
+      ],
+      "why": "الزفير الأطول يهدّئ الجهاز العصبي."
+    },
+    {
+      "id": "mind-journal",
+      "category": "mind",
+      "title": "تدوين ٣ أسطر",
+      "note": "كيف أشعر؟ ما يشغلني؟ ما أريد؟",
+      "icon": "pen",
+      "color": "sand",
+      "time": null,
+      "duration": 5,
+      "days": [],
+      "priority": "core",
+      "energy": "low",
+      "anchor": "مع القهوة",
+      "steps": [
+        "اكتب ٣ أسطر",
+        "لا تصحح",
+        "أغلق الدفتر"
+      ],
+      "why": "الكتابة تفرّغ الرأس وتقلل التفكير المتكرر."
+    },
+    {
+      "id": "mind-read",
+      "category": "mind",
+      "title": "قراءة ١٠ صفحات",
+      "note": "كتاب واحد حتى النهاية.",
+      "icon": "book",
+      "color": "honey",
+      "time": "21:30",
+      "duration": 15,
+      "days": [],
+      "priority": "core",
+      "energy": "low",
+      "anchor": "بعد ترتيب السرير",
+      "steps": [
+        "أحضر الكتاب",
+        "ضع الهاتف بعيدًا",
+        "علّم سطرًا"
+      ],
+      "why": "القراءة الصغيرة اليومية تتفوق على الكبيرة المتقطعة."
+    },
+    {
+      "id": "mind-silence",
+      "category": "mind",
+      "title": "دقيقتان صامتتان",
+      "note": "بلا هاتف وبلا هدف.",
+      "icon": "leaf",
+      "color": "mint",
+      "time": "13:30",
+      "duration": 3,
+      "days": [],
+      "priority": "support",
+      "energy": "low",
+      "anchor": "بعد الغداء",
+      "steps": [
+        "اجلس",
+        "أنفاس هادئة",
+        "لا تحكم"
+      ],
+      "why": "التوقف القصير يقطع سلسلة التوتر."
+    },
+    {
+      "id": "mind-walk",
+      "category": "mind",
+      "title": "مشي صامت",
+      "note": "بلا بودكاست ولا هاتف.",
+      "icon": "walk",
+      "color": "mint",
+      "time": "18:30",
+      "duration": 15,
+      "days": [],
+      "priority": "support",
+      "energy": "medium",
+      "anchor": "قبل العشاء",
+      "steps": [
+        "اترك الهاتف",
+        "امشِ بلا هدف",
+        "تنفس من الأنف"
+      ],
+      "why": "المشي الصامت يعيد ترتيب الأفكار."
+    },
+    {
+      "id": "work-plan",
+      "category": "work",
+      "title": "خطة اليوم",
+      "note": "ثلاث مهام فقط.",
+      "icon": "sparkles",
+      "color": "sand",
+      "time": "07:00",
+      "duration": 5,
+      "days": [],
+      "priority": "core",
+      "energy": "low",
+      "anchor": "قبل أول مهمة",
+      "steps": [
+        "اكتب ٣ مهام",
+        "حدد الأهم",
+        "ضع وقتًا"
+      ],
+      "why": "قائمة قصيرة تُنجَز أفضل من طويلة تُجمّد."
+    },
+    {
+      "id": "work-focus",
+      "category": "work",
+      "title": "نافذة تركيز ٢٥ دقيقة",
+      "note": "مهمة واحدة بلا مقاطعة.",
+      "icon": "brain",
+      "color": "lilac",
+      "time": "08:30",
+      "duration": 25,
+      "days": [],
+      "priority": "core",
+      "energy": "high",
+      "anchor": "بعد خطة اليوم",
+      "steps": [
+        "اختر مهمة",
+        "أغلق الإشعارات",
+        "٢٥ دقيقة"
+      ],
+      "why": "جلسة قصيرة مركزة تتغلب على ساعتين مشتتتين."
+    },
+    {
+      "id": "work-review",
+      "category": "work",
+      "title": "إغلاق يوم العمل",
+      "note": "ما انتهى؟ ما بقي؟ أول خطوة غدًا؟",
+      "icon": "moon",
+      "color": "lilac",
+      "time": "16:30",
+      "duration": 10,
+      "days": [],
+      "priority": "support",
+      "energy": "low",
+      "anchor": "قبل إغلاق الحاسوب",
+      "steps": [
+        "اكتب ما انتهى",
+        "اكتب ما بقي",
+        "اكتب خطوة الغد"
+      ],
+      "why": "الإغلاق يمنع العمل من مطاردة المساء."
+    },
+    {
+      "id": "work-learn",
+      "category": "work",
+      "title": "تعلّم ٢٥ دقيقة",
+      "note": "مهارة واحدة فقط.",
+      "icon": "brain",
+      "color": "honey",
+      "time": "09:00",
+      "duration": 25,
+      "days": [
+        "sun",
+        "mon",
+        "tue",
+        "wed",
+        "thu"
+      ],
+      "priority": "core",
+      "energy": "high",
+      "anchor": "بعد القهوة",
+      "steps": [
+        "مصدر واحد",
+        "لا تبويبات أخرى",
+        "سجّل ما فهمت"
+      ],
+      "why": "التكرار الصغير يبني المهارة."
+    },
+    {
+      "id": "work-write",
+      "category": "work",
+      "title": "كتابة ١٠٠ كلمة",
+      "note": "فقرة عن فكرة واحدة.",
+      "icon": "pen",
+      "color": "rose",
+      "time": "20:00",
+      "duration": 15,
+      "days": [],
+      "priority": "support",
+      "energy": "low",
+      "anchor": "بعد العشاء",
+      "steps": [
+        "فكرة واحدة",
+        "١٠٠ كلمة",
+        "بلا تعديل"
+      ],
+      "why": "الكتابة تحوّل المعرفة إلى فهم."
+    },
+    {
+      "id": "work-weekly",
+      "category": "work",
+      "title": "مراجعة أسبوعية",
+      "note": "ما نجح؟ ما تعطّل؟ ما تعديل الأسبوع؟",
+      "icon": "sparkles",
+      "color": "lilac",
+      "time": "18:00",
+      "duration": 30,
+      "days": [
+        "fri"
+      ],
+      "priority": "core",
+      "energy": "medium",
+      "anchor": "مساء الجمعة",
+      "steps": [
+        "راجع الأسبوع",
+        "اختر تعديلًا",
+        "خطط القادم"
+      ],
+      "why": "المراجعة تحوّل التجربة إلى نظام."
+    },
+    {
+      "id": "home-tidy",
+      "category": "home",
+      "title": "ترتيب ١٠ دقائق",
+      "note": "منطقة واحدة فقط.",
+      "icon": "leaf",
+      "color": "sand",
+      "time": null,
+      "duration": 10,
+      "days": [],
+      "priority": "support",
+      "energy": "low",
+      "anchor": "قبل النوم",
+      "steps": [
+        "اختر منطقة",
+        "مؤقت ١٠ دقائق",
+        "لا تشتت"
+      ],
+      "why": "البيت المرتب يقلل الحمل الذهني."
+    },
+    {
+      "id": "home-dishes",
+      "category": "home",
+      "title": "المطبخ قبل النوم",
+      "note": "أوانٍ وطاولة فقط.",
+      "icon": "coffee",
+      "color": "sand",
+      "time": "21:00",
+      "duration": 10,
+      "days": [],
+      "priority": "support",
+      "energy": "low",
+      "anchor": "بعد العشاء",
+      "steps": [
+        "اغسل الأواني",
+        "امسح الطاولة",
+        "أفرغ الحوض"
+      ],
+      "why": "صباح بلا فوضى يبدأ أفضل."
+    },
+    {
+      "id": "home-plant",
+      "category": "home",
+      "title": "عناية بالنباتات",
+      "note": "دقيقتان ماء وملاحظة.",
+      "icon": "leaf",
+      "color": "mint",
+      "time": "08:00",
+      "duration": 2,
+      "days": [
+        "sun",
+        "wed"
+      ],
+      "priority": "bonus",
+      "energy": "low",
+      "anchor": "بعد القهوة",
+      "steps": [
+        "افحص التربة",
+        "اسقِ إن احتاجت",
+        "أزل الأوراق الجافة"
+      ],
+      "why": "رعاية شيء حي تهدّئ الإيقاع."
+    },
+    {
+      "id": "people-call",
+      "category": "people",
+      "title": "اتصال بشخص تحبه",
+      "note": "خمس دقائق بلا شاشة.",
+      "icon": "heart",
+      "color": "rose",
+      "time": "19:00",
+      "duration": 5,
+      "days": [],
+      "priority": "core",
+      "energy": "low",
+      "anchor": "بعد العشاء",
+      "steps": [
+        "اختر شخصًا",
+        "اسأل سؤالًا حقيقيًا",
+        "استمع"
+      ],
+      "why": "العلاقات أطول استثمار في حياتك."
+    },
+    {
+      "id": "people-message",
+      "category": "people",
+      "title": "رسالة امتنان",
+      "note": "رسالة واحدة لشخص أثر فيك.",
+      "icon": "sparkles",
+      "color": "honey",
+      "time": null,
+      "duration": 3,
+      "days": [],
+      "priority": "support",
+      "energy": "low",
+      "anchor": "بعد الغداء",
+      "steps": [
+        "اختر شخصًا",
+        "اكتب جملة صادقة",
+        "أرسلها"
+      ],
+      "why": "الامتنان يعيد ترتيب ما يهم فعلًا."
+    },
+    {
+      "id": "people-family",
+      "category": "people",
+      "title": "وقت عائلة بلا شاشة",
+      "note": "١٥ دقيقة حضور كامل.",
+      "icon": "heart",
+      "color": "rose",
+      "time": "20:30",
+      "duration": 15,
+      "days": [],
+      "priority": "core",
+      "energy": "low",
+      "anchor": "بعد العشاء",
+      "steps": [
+        "ضع الهواتف",
+        "اجلس معهم",
+        "اسأل عن يومهم"
+      ],
+      "why": "الحضور أهم من المدة."
+    },
+    {
+      "id": "money-check",
+      "category": "money",
+      "title": "مراجعة مصروف اليوم",
+      "note": "دقيقتان بلا حكم على نفسك.",
+      "icon": "coffee",
+      "color": "sand",
+      "time": "20:00",
+      "duration": 3,
+      "days": [],
+      "priority": "support",
+      "energy": "low",
+      "anchor": "بعد إغلاق اليوم",
+      "steps": [
+        "افتح تطبيق البنك",
+        "سجّل المصروف",
+        "اسأل: هل خدم خطتي؟"
+      ],
+      "why": "الوعي المالي يمنع مفاجآت نهاية الشهر."
+    },
+    {
+      "id": "money-save",
+      "category": "money",
+      "title": "تحويل مبلغ صغير للتوفير",
+      "note": "مهما كان المبلغ.",
+      "icon": "leaf",
+      "color": "mint",
+      "time": null,
+      "duration": 2,
+      "days": [
+        "sun"
+      ],
+      "priority": "support",
+      "energy": "low",
+      "anchor": "صباح الأحد",
+      "steps": [
+        "افتح التطبيق",
+        "حوّل مبلغًا صغيرًا",
+        "لا تتراجع"
+      ],
+      "why": "الاستمرارية أهم من المبلغ."
+    },
+    {
+      "id": "spirit-dhikr",
+      "category": "spirit",
+      "title": "ذكر الصباح",
+      "note": "خمس دقائق بعد الفجر أو الاستيقاظ.",
+      "icon": "sunrise",
+      "color": "sky",
+      "time": "06:30",
+      "duration": 5,
+      "days": [],
+      "priority": "core",
+      "energy": "low",
+      "anchor": "بعد الصلاة",
+      "steps": [
+        "اجلس بهدوء",
+        "أذكار الصباح",
+        "ادعُ لنفسك"
+      ],
+      "why": "بداية هادئة تضبط نبرة اليوم."
+    },
+    {
+      "id": "spirit-quran",
+      "category": "spirit",
+      "title": "ورد القرآن",
+      "note": "صفحة واحدة على الأقل.",
+      "icon": "book",
+      "color": "honey",
+      "time": "21:00",
+      "duration": 10,
+      "days": [],
+      "priority": "core",
+      "energy": "low",
+      "anchor": "بعد صلاة العشاء",
+      "steps": [
+        "افتح المصحف",
+        "اقرأ صفحة",
+        "تأمل آية"
+      ],
+      "why": "الورد القليل الثابت خير من الكثير المنقطع."
+    },
+    {
+      "id": "spirit-gratitude",
+      "category": "spirit",
+      "title": "امتنان لثلاثة أشياء",
+      "note": "ثلاثة أشياء صغيرة حدثت اليوم.",
+      "icon": "sparkles",
+      "color": "honey",
+      "time": "22:00",
+      "duration": 5,
+      "days": [],
+      "priority": "support",
+      "energy": "low",
+      "anchor": "قبل النوم",
+      "steps": [
+        "اكتب ٣ أشياء",
+        "اذكر شخصًا",
+        "اشكر الله"
+      ],
+      "why": "الامتنان يدرّب العقل على رؤية ما يعمل."
+    },
+    {
+      "id": "quick-reset",
+      "category": "mind",
+      "title": "إعادة ضبط ٦٠ ثانية",
+      "note": "قف، تنفس، اشرب ماء.",
+      "icon": "water",
+      "color": "sky",
+      "time": null,
+      "duration": 1,
+      "days": [],
+      "priority": "bonus",
+      "energy": "low",
+      "anchor": "بعد أي اجتماع",
+      "steps": [
+        "قف",
+        "٣ أنفاس",
+        "رشفة ماء"
+      ],
+      "why": "انتقال صغير يمنع التوتر من التراكم."
+    },
+    {
+      "id": "quick-desk",
+      "category": "home",
+      "title": "تفريغ المكتب",
+      "note": "٣ دقائق فقط.",
+      "icon": "leaf",
+      "color": "sand",
+      "time": null,
+      "duration": 3,
+      "days": [],
+      "priority": "bonus",
+      "energy": "low",
+      "anchor": "بداية العمل",
+      "steps": [
+        "أعد الأشياء لمكانها",
+        "امسح السطح",
+        "افتح دفترًا واحدًا"
+      ],
+      "why": "سطح فارغ يقلل التشتت."
+    }
+  ],
+  "total": 29,
+  "count": 29
+}

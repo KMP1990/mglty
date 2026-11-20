@@ -1,0 +1,28 @@
+{
+  "name": "majalati-routinee",
+  "version": "0.1.0",
+  "private": true,
+  "description": "مجلتي وروتيني — موقع + تطبيق قابل للتثبيت: مصادقة وإشعارات وحفظ قوي",
+  "type": "module",
+  "main": "server/index.js",
+  "engines": {
+    "node": ">=18.17"
+  },
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "start": "node tools/build.mjs && node server/index.js",
+    "dev": "node tools/build.mjs && node --watch server/index.js",
+    "icons": "node tools/make-icons.mjs",
+    "check": "node tools/check.mjs",
+    "inspect": "node tools/inspect/index.mjs",
+    "inspect:json": "node tools/inspect/index.mjs --json",
+    "backup": "node tools/backup.mjs",
+    "test": "node --test tests/*.test.js"
+  },
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "express": "^4.22.3",
+    "helmet": "^7.2.0",
+    "pdfjs-dist": "^4.8.69"
+  }
+}

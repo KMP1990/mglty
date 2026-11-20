@@ -1,0 +1,26 @@
+# تبعيات Node
+node_modules/
+
+# بيانات التشغيل (مستخدمون/جلسات/إشعارات) — تُستهلك على الخادم فقط
+data/
+backups/
+server.log
+*.log
+
+# أسرار ومتغيرات بيئة
+.env
+.env.*
+!.env.example
+
+# مولّد وقت البناء
+public/build.json
+dist/
+
+# ملفات النظام
+.DS_Store
+Thumbs.db
+
+# أدوات ومخازن محلية
+.agent-cache/
+.vscode/
+.idea/

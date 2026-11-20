@@ -1,0 +1,85 @@
+/* ==========================================================
+   نظام الخطوط — مجلتي وروتيني
+   ------------------------------------------------------------
+   عائلات محليّة بلا أي طلب خارجي:
+   • Noto Sans Arabic  → واجهة/نصوص عامة (Variable 100–900)
+   • Cairo             → عناوين وأرقام وعرض (Variable 200–1000)
+   • Noto Naskh Arabic → قراءة طويلة/كتب (Variable 400–700)
+   • Mujalati/Tajawal  → احتياط قديم خفيف
+   كل الملفات woff2 مع نطاقات unicode حتى لا يُحمَّل العربي عند غيابه.
+   ========================================================== */
+
+/* ---------- احتياط قديم (يبقى للتوافق) ---------- */
+@font-face {
+  font-family: 'Mujalati';
+  src: url('/assets/fonts/tajawal-regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- Noto Sans Arabic — واجهة ---------- */
+@font-face {
+  font-family: 'Noto Sans Arabic';
+  src: url('/assets/fonts/noto-sans-arabic-arabic.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E,
+    U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+1EE00-1EEFF;
+}
+
+@font-face {
+  font-family: 'Noto Sans Arabic';
+  src: url('/assets/fonts/noto-sans-arabic-latin.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2000-206F, U+20A0-20C4,
+    U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* ---------- Cairo — عناوين ---------- */
+@font-face {
+  font-family: 'Cairo';
+  src: url('/assets/fonts/cairo-arabic.woff2') format('woff2');
+  font-weight: 200 1000;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E,
+    U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+1EE00-1EEFF;
+}
+
+@font-face {
+  font-family: 'Cairo';
+  src: url('/assets/fonts/cairo-latin.woff2') format('woff2');
+  font-weight: 200 1000;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2000-206F, U+20A0-20C4,
+    U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* ---------- Noto Naskh Arabic — قراءة ---------- */
+@font-face {
+  font-family: 'Noto Naskh Arabic';
+  src: url('/assets/fonts/noto-naskh-arabic.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0600-06FF, U+0750-077F, U+0870-0891, U+0897-08E1, U+08E3-08FF, U+200C-200E,
+    U+2010-2011, U+204F, U+2E41, U+FB50-FDFF, U+FE70-FE74, U+FE76-FEFC, U+1EE00-1EEFF;
+}
+
+@font-face {
+  font-family: 'Noto Naskh Arabic';
+  src: url('/assets/fonts/noto-naskh-latin.woff2') format('woff2');
+  font-weight: 400 700;
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
+    U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2000-206F, U+20A0-20C4,
+    U+2113, U+2C60-2C7F, U+A720-A7FF;
+}

@@ -1,0 +1,300 @@
+/* ==========================================================
+   صفحة الحساب — ميزة مستقلة
+   ========================================================== */
+.account-layout {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: var(--space-5);
+  padding-block: var(--space-5) var(--space-7);
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .account-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.profile-card {
+  padding: var(--space-5) var(--space-4);
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  gap: var(--space-2);
+}
+
+.avatar-lg {
+  width: 84px;
+  height: 84px;
+  border-radius: 28px;
+  display: grid;
+  place-items: center;
+  font-size: 1.9rem;
+  font-weight: 800;
+  color: #fff;
+  background: linear-gradient(135deg, var(--brand-500), var(--mint-400));
+  box-shadow: var(--shadow-md);
+}
+
+.profile-card h2 {
+  margin: var(--space-2) 0 0;
+  font-size: 1.2rem;
+}
+
+.profile-card .email {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  direction: ltr;
+}
+
+.account-panels {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.panel {
+  padding: var(--space-4) var(--space-5);
+}
+
+.panel>header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-bottom: var(--space-3);
+  margin-bottom: var(--space-4);
+  border-bottom: 1px solid var(--surface-border);
+}
+
+.panel>header h3 {
+  margin: 0;
+  font-size: 1.02rem;
+}
+
+.panel>header p {
+  margin: 0;
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.panel-ico {
+  width: 40px;
+  height: 40px;
+  flex: none;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+  background: var(--bg-soft);
+  border: 1px solid var(--surface-border);
+  color: var(--brand-600);
+}
+
+.inline-form {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-2);
+  align-items: end;
+}
+
+@media (max-width: 560px) {
+  .inline-form {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 var(--space-3);
+}
+
+@media (max-width: 640px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.form-grid .full {
+  grid-column: 1 / -1;
+}
+
+.theme-options {
+  display: flex;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.theme-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--surface-border-strong);
+  background: var(--bg-elevated);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-soft);
+}
+
+.theme-option[aria-pressed='true'] {
+  border-color: var(--brand-500);
+  color: var(--brand-600);
+  box-shadow: var(--ring);
+}
+
+.danger-zone {
+  border-color: color-mix(in srgb, var(--danger) 34%, transparent);
+}
+
+.danger-zone>header .panel-ico {
+  color: var(--danger);
+  background: var(--danger-soft);
+  border-color: transparent;
+}
+
+.row-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  padding-block: 10px;
+}
+
+.row-between+.row-between {
+  border-top: 1px dashed var(--surface-border);
+}
+
+.row-between .label {
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.row-between .desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+/* ---------- منطقة الخطر: نص أوضح وضوابط لا تزاحمه ---------- */
+.danger-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  padding-block: 4px;
+}
+.danger-row p {
+  margin: 0;
+  font-size: 0.9rem;
+  flex: 1 1 230px;
+  color: var(--text-soft);
+}
+.danger-row .danger-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex: 0 1 auto;
+}
+.danger-row .input {
+  width: 132px;
+  min-height: 42px;
+  direction: ltr;
+  text-align: center;
+  letter-spacing: 0.12em;
+  font-weight: 700;
+}
+
+/* ---------- صورة الحساب ---------- */
+.avatar-lg {
+  overflow: hidden;
+  padding: 0;
+  border: 2px solid color-mix(in srgb, var(--brand-300) 60%, transparent);
+  cursor: pointer;
+}
+
+.avatar-lg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.avatar-editor {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.avatar-target {
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+
+.avatar-target:hover {
+  transform: translateY(-2px) scale(1.02);
+}
+
+.avatar-target[data-busy='true'] {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.avatar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+  flex: 1 1 240px;
+}
+
+.avatar-actions small {
+  flex-basis: 100%;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+@media (max-width: 560px) {
+  .avatar-editor {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .avatar-actions {
+    justify-content: center;
+  }
+}
+
+/* ---------- الأصوات وتذكير القراءة ---------- */
+.sound-pref,
+.reading-pref {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.sound-pref input[type='range'] {
+  width: 112px;
+  accent-color: var(--brand-500);
+}
+
+.reading-pref .input[type='time'] {
+  width: 112px;
+  min-height: 38px;
+  padding: 6px 10px;
+  direction: ltr;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 520px) {
+  .sound-pref,
+  .reading-pref {
+    justify-content: flex-start;
+    width: 100%;
+  }
+}

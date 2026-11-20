@@ -1,0 +1,26 @@
+services:
+  app:
+    build: .
+    container_name: majalati-routinee
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      DATA_DIR: /app/data
+      # ضع السر في ملف .env بجانب هذا الملف — لا تكتبه هنا
+      SESSION_SECRET: ${SESSION_SECRET:?ضع SESSION_SECRET في .env}
+      COOKIE_SECURE: "true"
+      TRUST_PROXY: "1"
+      LOG_LEVEL: info
+    volumes:
+      # البيانات (المستخدمون/الجلسات/الإشعارات) تبقى خارج الحاوية
+      - ./data:/app/data
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:3000/api/healthz').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+    security_opt:
+      - no-new-privileges:true

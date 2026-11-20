@@ -1,0 +1,624 @@
+/* ==========================================================
+   ميزة الإشعارات — أنماط خاصة بها فقط
+   ========================================================== */
+.notif-layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: var(--space-5);
+  padding-block: var(--space-5) var(--space-7);
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .notif-layout {
+    grid-template-columns: 1fr;
+  }
+  /* الجوال: القائمة أولًا ثم الأدوات — لأن الإشعارات هي الغاية الأساسية */
+  .notif-side {
+    order: 2;
+  }
+}
+
+.notif-side {
+  display: grid;
+  gap: var(--space-3);
+  position: sticky;
+  top: calc(var(--header-h) + var(--space-4));
+}
+
+@media (max-width: 860px) {
+  .notif-side {
+    position: static;
+  }
+  /* على الجوال نخفي لوحتي الحالة والتنبيهات، ونبقي لوحة الأدوات تحت القائمة */
+  .notif-side > .side-card:not(:last-child) {
+    display: none;
+  }
+}
+
+.side-card {
+  padding: var(--space-4);
+  display: grid;
+  gap: var(--space-3);
+}
+@media (max-width: 860px) {
+  .side-card {
+    display: none;
+  }
+  /* نُظهر لوحة الأدوات فقط على الجوال تحت القائمة */
+  .notif-side .side-card:last-of-type {
+    display: grid;
+  }
+}
+
+.side-card h3 {
+  margin: 0;
+  font-size: 0.95rem;
+  color: var(--text-soft);
+}
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--success);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--success) 22%, transparent);
+  display: inline-block;
+}
+
+.status-dot[data-state='offline'] {
+  background: var(--warning);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--warning) 22%, transparent);
+}
+
+.status-dot[data-state='connecting'] {
+  background: var(--info);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--info) 22%, transparent);
+}
+
+/* ---------- رأس القائمة ---------- */
+.notif-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-4);
+}
+
+.notif-head h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+@media (max-width: 600px) {
+  .notif-head {
+    align-items: flex-start;
+  }
+  .notif-head h1 {
+    font-size: 1.3rem;
+  }
+  .notif-item {
+    grid-template-columns: 40px minmax(0, 1fr);
+    padding: var(--space-3);
+  }
+  /* أزرار الإجراءات تصير تحت النص على الجوال */
+  .notif-actions {
+    grid-column: 2;
+    opacity: 1;
+    justify-content: flex-end;
+  }
+}
+
+.tabs {
+  display: inline-flex;
+  padding: 4px;
+  background: var(--bg-soft);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-full);
+  gap: 2px;
+}
+
+.tab {
+  border: 0;
+  background: transparent;
+  font: inherit;
+  font-weight: 700;
+  font-size: 0.86rem;
+  color: var(--text-soft);
+  padding: 7px 16px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.tab[aria-selected='true'] {
+  background: var(--bg-elevated);
+  color: var(--brand-600);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ---------- قائمة الإشعارات ---------- */
+.notif-list {
+  display: grid;
+  gap: var(--space-2);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.notif-item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 44px minmax(0, 1fr) auto;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--bg-elevated);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius);
+  transition: border-color var(--dur) var(--ease), transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+  animation: notif-in 0.28s var(--ease);
+}
+
+@keyframes notif-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+
+.notif-item:hover {
+  border-color: var(--surface-border-strong);
+  box-shadow: var(--shadow-sm);
+}
+
+.notif-item[data-unread='true'] {
+  border-inline-start: 4px solid var(--brand-500);
+  background: color-mix(in srgb, var(--brand-50) 55%, var(--bg-elevated));
+}
+
+[data-theme='dark'] .notif-item[data-unread='true'] {
+  background: color-mix(in srgb, #3a1c2e 60%, var(--bg-elevated));
+}
+
+.notif-item[data-unread='true']::after {
+  content: '';
+  position: absolute;
+  inset-block-start: 16px;
+  inset-inline-end: 16px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--brand-500);
+}
+
+.notif-item.is-new {
+  animation: notif-pop 0.5s var(--ease);
+}
+
+@keyframes notif-pop {
+  0% {
+    box-shadow: 0 0 0 0 rgba(219, 39, 119, 0.45);
+  }
+
+  100% {
+    box-shadow: 0 0 0 14px rgba(219, 39, 119, 0);
+  }
+}
+
+.notif-ico {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: var(--brand-50);
+  color: var(--brand-600);
+  flex: none;
+}
+
+[data-theme='dark'] .notif-ico {
+  background: #3a1c2e;
+  color: var(--brand-300);
+}
+
+.notif-ico[data-type='security'] {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.notif-ico[data-type='system'] {
+  background: var(--info-soft);
+  color: var(--info);
+}
+
+.notif-ico[data-type='reminder'] {
+  background: var(--warning-soft);
+  color: var(--warning);
+}
+
+.notif-ico[data-type='achievement'] {
+  background: var(--mint-100);
+  color: var(--mint-600);
+}
+
+[data-theme='dark'] .notif-ico[data-type='achievement'] {
+  background: #10332f;
+  color: var(--mint-400);
+}
+
+.notif-body h3 {
+  margin: 0 0 2px;
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.notif-body p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: var(--text-soft);
+}
+
+.notif-body time {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.notif-body .notif-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.notif-actions {
+  display: flex;
+  gap: 4px;
+  align-items: flex-start;
+  opacity: 0;
+  transition: opacity var(--dur) var(--ease);
+}
+
+.notif-item:hover .notif-actions,
+.notif-item:focus-within .notif-actions {
+  opacity: 1;
+}
+
+@media (hover: none) {
+  .notif-actions {
+    opacity: 1;
+  }
+}
+
+.icon-btn {
+  appearance: none;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text-muted);
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+
+.icon-btn:hover {
+  background: var(--bg-soft);
+  color: var(--text);
+}
+
+.icon-btn[data-danger]:hover {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.icon-btn[data-active='true'] {
+  color: var(--brand-600);
+}
+
+/* ---------- حالة فراغ/تحميل ---------- */
+.empty-state {
+  display: grid;
+  place-items: center;
+  gap: var(--space-3);
+  text-align: center;
+  padding: var(--space-7) var(--space-4);
+  border: 1.5px dashed var(--surface-border-strong);
+  border-radius: var(--radius-lg);
+  color: var(--text-soft);
+}
+
+.empty-state .emoji {
+  font-size: 44px;
+}
+
+.skeleton {
+  min-height: 88px;
+  border-radius: var(--radius);
+  background: linear-gradient(90deg, var(--bg-soft) 25%, var(--bg-elevated) 50%, var(--bg-soft) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.2s infinite linear;
+  border: 1px solid var(--surface-border);
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+
+.section-head h2 {
+  margin: 0;
+  font-size: 1.02rem;
+}
+
+/* ---------- بانر تفعيل إشعارات النظام ---------- */
+.perm-banner {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius);
+  background: var(--info-soft);
+  color: var(--text);
+  border: 1px solid color-mix(in srgb, var(--info) 26%, transparent);
+  margin-bottom: var(--space-4);
+  font-size: 0.9rem;
+}
+/* ==========================================================
+   تطويرات: قنوات الوصول، ما فاتك، تصفية الأنواع، البحث
+   ========================================================== */
+.notif-welcome {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: var(--space-3) var(--space-4);
+  margin-bottom: var(--space-3);
+  border-radius: var(--radius);
+  border: 1px solid color-mix(in srgb, var(--brand-500) 30%, transparent);
+  background: color-mix(in srgb, var(--brand-50) 70%, var(--bg-elevated));
+}
+
+[data-theme='dark'] .notif-welcome {
+  background: color-mix(in srgb, #3a1c2e 55%, var(--bg-elevated));
+}
+
+.notif-welcome strong {
+  display: block;
+  font-size: 0.95rem;
+}
+
+.notif-welcome small {
+  color: var(--text-soft);
+  font-size: 0.82rem;
+}
+
+.notif-welcome-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.notif-toolbar {
+  display: grid;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+}
+
+.notif-toolbar-row {
+  display: flex;
+  gap: var(--space-2);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.notif-search {
+  flex: 1;
+  min-width: 180px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.notif-search .input {
+  min-height: 40px;
+  font-size: 0.88rem;
+  padding-inline-start: 34px;
+}
+
+.notif-search svg {
+  position: absolute;
+  inset-inline-start: 10px;
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+.chip-row {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.chip-filter {
+  appearance: none;
+  border: 1px solid var(--surface-border);
+  background: var(--bg-elevated);
+  color: var(--text-soft);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 6px 11px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease), border-color var(--dur) var(--ease);
+}
+
+.chip-filter[aria-pressed='true'] {
+  background: var(--brand-500);
+  border-color: var(--brand-500);
+  color: #fff;
+}
+
+.notif-day {
+  margin: var(--space-4) 0 var(--space-2);
+  font-size: 0.78rem;
+  font-weight: 800;
+  color: var(--text-muted);
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.notif-day::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--surface-border);
+}
+
+.notif-empty-filter {
+  padding: var(--space-6) var(--space-4);
+  text-align: center;
+  color: var(--text-soft);
+  border: 1.5px dashed var(--surface-border-strong);
+  border-radius: var(--radius-lg);
+}
+
+.push-state {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.82rem;
+  color: var(--text-soft);
+}
+
+.push-state b {
+  color: var(--text);
+  font-size: 0.86rem;
+}
+
+.push-devices {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.76rem;
+  color: var(--text-muted);
+}
+
+.push-devices li {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 5px 7px;
+  border-radius: 8px;
+  background: var(--bg-soft);
+}
+
+.push-note {
+  margin: 0;
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.digest-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.82rem;
+}
+
+.digest-row .input {
+  min-height: 34px;
+  padding-block: 2px;
+  font-size: 0.8rem;
+  max-width: 110px;
+}
+
+.quiet-row {
+  justify-content: flex-start;
+}
+
+.quiet-sep {
+  color: var(--text-muted);
+  font-size: 0.78rem;
+}
+
+.quiet-row .input:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.notif-skeleton-inline {
+  height: 14px;
+  border-radius: 6px;
+  background: var(--bg-soft);
+  margin-top: 8px;
+}
+
+/* على الجوال: نُبقي بطاقات القناة والملخص والأدوات ظاهرة */
+@media (max-width: 860px) {
+  .notif-side > .side-card[data-mobile='true'],
+  .notif-side > .side-card:last-of-type {
+    display: grid;
+  }
+  .notif-side > .side-card:not([data-mobile='true']):not(:last-of-type) {
+    display: none;
+  }
+}
+
+.push-devices li {
+  align-items: center;
+}
+
+.push-devices li.push-device-error {
+  background: color-mix(in srgb, #f59e0b 14%, var(--bg-soft));
+  color: color-mix(in srgb, #b45309 78%, var(--text));
+}
+
+.push-devices .icon-btn {
+  width: 24px;
+  height: 24px;
+  font-size: 0.66rem;
+  border-radius: 7px;
+  flex: none;
+}
+
+.push-diag {
+  white-space: pre-wrap;
+  font-size: 0.66rem;
+  line-height: 1.6;
+  background: color-mix(in srgb, var(--text) 5%, transparent);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 8px;
+  margin: 0;
+  color: var(--text-muted);
+  direction: ltr;
+  text-align: left;
+  max-height: 180px;
+  overflow: auto;
+}

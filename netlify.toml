@@ -1,0 +1,45 @@
+# إعداد Netlify — واجهة + CDN فقط
+# ------------------------------------------------------------
+# هذا التطبيق Express كامل (تسجيل دخول، جلسات، إشعارات، بيانات على القرص).
+# Netlify لا يشغّل خادم Node دائمًا، لذلك النشر هنا جهة واجهة/أصول فقط:
+#   1) `npm run build` يجهّز `public` ثم ينسخها إلى `dist` للنشر.
+#   2) طلبات الصفحات و/api تُمرَّر إلى خادم Node عبر Edge Function.
+#   3) يجب نشر الخادم على Render/Railway/Fly وضبط BACKEND_ORIGIN في Netlify.
+# التفاصيل في DEPLOY.md.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[[edge_functions]]
+  function = "proxy"
+  path = "/*"
+
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache, no-store, must-revalidate"
+    Service-Worker-Allowed = "/"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/build.json"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/vendor/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
